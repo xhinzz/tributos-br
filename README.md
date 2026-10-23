@@ -43,7 +43,7 @@ IBS_MUN     667.27 ×    0% =    0.00  CST 000  LC 214/2025; Situações tributa
 O IPI entra na base do ICMS porque o destino é consumidor final; o DIFAL e o FCP do RJ vão para o destino; PIS e
 COFINS saem sem o ICMS; e a base do IBS/CBS desconta ICMS, DIFAL, FCP, PIS e COFINS, como manda o art. 12 da LC 214.
 
-![Cálculo de uma venda de SP a consumidor final no RJ](docs/img/consumidor_final.svg)
+![Cálculo de uma venda de SP a consumidor final no RJ](https://raw.githubusercontent.com/xhinzz/tributos-br/main/docs/img/consumidor_final.svg)
 
 <sub>Prints gerados do cálculo de verdade por `scripts/gerar_imagens.py`. Valor marcado para conferir sai em
 amarelo.</sub>
@@ -89,6 +89,8 @@ resultado avisa (veja [Limites](#limites)).
 ## Instalação
 
 ```bash
+pip install tributos-br
+# ou, direto do repositório:
 pip install git+https://github.com/xhinzz/tributos-br
 ```
 
@@ -187,7 +189,7 @@ a MVA não é conhecida, o cálculo recusa em vez de sair sem ST. A MVA é ajust
 exceto para remetente do Simples e quando a alíquota interna do destino não passa da interestadual. Combustíveis
 e cigarros têm base por preço (PMPF, preço sugerido) e são recusados.
 
-![ST com MVA ajustada e benefício do Conv. 52/91](docs/img/st_e_beneficio.svg)
+![ST com MVA ajustada e benefício do Conv. 52/91](https://raw.githubusercontent.com/xhinzz/tributos-br/main/docs/img/st_e_beneficio.svg)
 
 ### DIFAL
 
@@ -222,7 +224,7 @@ for a in relatorio.achados:
     print(a.tipo, a.item, a.campo, a.nota, a.esperado, a.detalhe)
 ```
 
-![Auditoria apontando alíquota interestadual errada e DIFAL esquecido](docs/img/auditoria.svg)
+![Auditoria apontando alíquota interestadual errada e DIFAL esquecido](https://raw.githubusercontent.com/xhinzz/tributos-br/main/docs/img/auditoria.svg)
 
 Três tipos de achado:
 

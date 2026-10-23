@@ -101,9 +101,9 @@ def test_tres_metodos_do_difal(metodo, base, difal):
 
 
 def test_difal_sem_metodo_conferido_avisa():
-    r = nota(Participante("SP"), Participante("PB", contribuinte_icms=False), Item(NOTEBOOK, 1000))
+    r = nota(Participante("SP"), Participante("MS", contribuinte_icms=False), Item(NOTEBOOK, 1000))
     t = tributos(r)["DIFAL"]
-    assert t.extras["metodo"] == "unica"
+    assert t.extras["metodo"] == "dupla"
     assert "conferir" in t.extras
 
 

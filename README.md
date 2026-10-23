@@ -31,7 +31,7 @@ for nome, t in calcular(nota).itens[0].tributos.items():
 ```
 IPI        1000.00 ×   15% =  150.00  CST 50   TIPI (Decreto 11.158/2022), NCM 84713012
 ICMS       1150.00 ×   12% =  138.00  CST 00   Res. Senado 22/1989
-DIFAL      1150.00 ×   20% =   92.00  CST -    EC 87/2015, LC 190/2022 (base única em RJ); alíquota modal de RJ (Lei RJ 10.253/2023 (art. 14 da Lei 2.657/1996); FECP: LC 210/2023)
+DIFAL      1150.00 ×   20% =   92.00  CST -    EC 87/2015, LC 190/2022; base única em RJ (Consulta SEFAZ-RJ 69/2024); alíquota modal de RJ (Lei RJ 10.253/2023 (art. 14 da Lei 2.657/1996); FECP: LC 210/2023)
 FCP_DIFAL  1150.00 ×    2% =   23.00  CST -    FCP de RJ
 PIS         862.00 × 1.65% =   14.22  CST 01   não cumulativo (Leis 10.637/2002 e 10.833/2003); base sem o ICMS (STF, Tema 69)
 COFINS      862.00 ×  7.6% =   65.51  CST 01   não cumulativo (Leis 10.637/2002 e 10.833/2003); base sem o ICMS (STF, Tema 69)

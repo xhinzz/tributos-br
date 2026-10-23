@@ -1,32 +1,34 @@
-uf,aliquota_interna,fcp,difal_base,difal_conferido,vigencia_inicio,vigencia_fim,fonte,observacao
-AC,19,0,dupla,nao,2023-04-01,,"LC AC 422/2022 (art. 18 da LC 55/1997)",
-AL,19,1,dupla,nao,2023-04-01,2026-03-31,"Lei AL 5.900/1996, art. 17, I, b; FECOEP: Lei 6.558/2004, art. 2º-A",FECOEP geral com exceções (Dec. 2.845/2005)
-AL,20.5,1,dupla,nao,2026-04-01,,"Lei AL 9.776/2025 (art. 17, I, b, da Lei 5.900/1996); FECOEP: Lei 6.558/2004, art. 2º-A",FECOEP geral com exceções (Dec. 2.845/2005)
-AM,20,0,unica,nao,2023-04-01,,"LC AM 242/2022 (art. 12, I, b, da LC 19/1997)",
-AP,18,0,dupla,nao,2025-01-01,,"RICMS/AP, Anexo I, art. 25, III, i",vigente antes de 2025; início anterior não levantado
-BA,20.5,0,dupla,nao,2024-02-07,,"Lei BA 14.629/2023 (art. 15, I, da Lei 7.014/1996)",
-CE,20,0,por_dentro,nao,2024-01-01,,"Lei CE 18.305/2023 (art. 65 da Lei 18.665/2023)",
-DF,20,0,unica,nao,2024-01-22,,"Lei DF 7.326/2023 (art. 18, II, c, da Lei 1.254/1996)",
-ES,17,0,dupla,nao,2025-01-01,,"Lei ES 7.000/2001, art. 20, I",vigente antes de 2025; início anterior não levantado
-GO,19,0,por_dentro,nao,2024-04-01,,"Lei GO 22.460/2023 (art. 27, I, do CTE, Lei 11.651/1991)",
-MA,22,0,unica,nao,2024-01-01,2025-02-22,"Lei MA 12.120/2023 (art. 23, III, da Lei 7.799/2002)",início anterior a 2025 não conferido
-MA,23,0,unica,nao,2025-02-23,,"Lei MA 12.426/2024 (art. 23, III, da Lei 7.799/2002)",
-MG,18,0,dupla,nao,2025-01-01,,"Lei MG 6.763/1975, art. 12, I",vigente antes de 2025; início anterior não levantado
-MS,17,0,dupla,nao,2025-01-01,,"Lei MS 1.810/1997, art. 41",vigente antes de 2025; início anterior não levantado
-MT,17,0,unica,nao,2025-01-01,,"Lei MT 7.098/1998; RICMS/MT (Dec. 2.212/2014), art. 95",vigente antes de 2025; início anterior não levantado
-PA,19,0,unica,nao,2023-03-16,,"Lei PA 9.755/2022 (art. 12, VII, da Lei 5.530/1989)",
-PB,20,0,unica,nao,2024-01-01,,"Lei PB 12.788/2023 (art. 11, I, da Lei 6.379/1996)",
-PE,20.5,0,unica,nao,2024-01-01,,"Lei PE 18.305/2023 (art. 15, VII, da Lei 15.730/2016)",
-PI,21,0,por_dentro,nao,2023-01-01,2025-03-31,"Lei PI 4.257/1989, art. 23, I, c",início anterior a 2025 não conferido
-PI,22.5,0,por_dentro,nao,2025-04-01,,"Lei PI 8.558/2024 (art. 23, I, c, da Lei 4.257/1989)",
-PR,19.5,0,unica,nao,2024-03-18,,"Lei PR 21.850/2023 (art. 14, VIII, da Lei 11.580/1996)",
-RJ,20,2,unica,nao,2024-03-20,,"Lei RJ 10.253/2023 (art. 14 da Lei 2.657/1996); FECP: LC 210/2023",carga efetiva 22% com o FECP
-RN,18,0,unica,nao,2024-01-01,2025-03-19,"Lei RN 6.968/1996, art. 27, I, a",
-RN,20,0,unica,nao,2025-03-20,,"Lei RN 11.999/2024 (art. 27, I, a, da Lei 6.968/1996)",
-RO,19.5,0,unica,nao,2024-01-12,,"Lei RO 5.634/2023 (art. 27, I, c, da Lei 688/1996)",
-RR,20,0,unica,nao,2023-03-30,,"Lei RR 1.767/2022 (art. 32 da Lei 59/1993)",
-RS,17,0,unica,nao,2022-01-01,,"Lei RS 8.820/1989; RICMS/RS (Dec. 37.699/1997), Livro I, art. 27, X",
-SC,17,0,unica,nao,2025-01-01,,"Lei SC 10.297/1996, art. 19; RICMS/SC (Dec. 2.870/2001), art. 26, I",vigente antes de 2025; início anterior não levantado
-SE,19,1,unica,nao,2023-04-01,,"Lei SE 9.176/2023 (art. 18, I, j, da Lei 3.796/1996); FECOEP: Lei 9.177/2023",FECOEP geral com exceções (RICMS/SE art. 616-C-A)
-SP,18,0,unica,nao,2025-01-01,,"Lei SP 6.374/1989, art. 34; RICMS/SP, art. 52, I",vigente antes de 2025; início anterior não levantado
-TO,20,0,unica,nao,2024-01-01,,"Lei TO 4.141/2023 (art. 27, II, da Lei 1.287/2001)",
+uf,aliquota_interna,fcp,difal_base,difal_conferido,vigencia_inicio,vigencia_fim,fonte,difal_fonte,observacao
+AC,19,0,unica,sim,2023-04-01,,"LC AC 422/2022 (art. 18 da LC 55/1997)","RICMS/AC (Dec. 8/1998), art. 184-J, red. Dec. 11.939/2026",o Dec. 11.939/2026 revogou as fórmulas do §2º
+AL,19,1,unica,sim,2023-04-01,2026-03-31,"Lei AL 5.900/1996, art. 17, I, b; FECOEP: Lei 6.558/2004, art. 2º-A","Comunicado SRE 21/2015 (exemplo: 135,00 + FECOEP 10,00)",FECOEP geral com exceções (Dec. 2.845/2005)
+AL,20.5,1,unica,sim,2026-04-01,,"Lei AL 9.776/2025 (art. 17, I, b, da Lei 5.900/1996); FECOEP: Lei 6.558/2004, art. 2º-A","Comunicado SRE 21/2015, tabelas do Comunicado SURE 2/2026",FECOEP geral com exceções (Dec. 2.845/2005)
+AM,20,0,unica,sim,2023-04-01,,"LC AM 242/2022 e LC 244/2023, art. 6º (art. 12, I, b, da LC 19/1997)","LC 19/1997, art. 13, XIV e §3º (red. LC 244/2023)",
+AP,18,0,unica,nao,2016-02-01,,"Lei AP 400/1997, art. 37, III, i (red. Lei 1.949/2015)","Lei 400/1997, art. 16, IX, §§2º e 4º (Lei 2.756/2022)",sem fórmula nem exemplo da SEFAZ-AP
+BA,20.5,0,unica,nao,2024-02-07,,"Lei BA 14.629/2023 (art. 15, I, da Lei 7.014/1996)","Lei 7.014/1996, art. 17, XI-A e §§6º e 14 (Lei 14.415/2021)",base dupla para não contribuinte só de 22/12/2017 a 30/12/2021; sem exemplo oficial
+CE,20,0,por_dentro,sim,2024-01-01,,"Lei CE 18.305/2023 (art. 65 da Lei 18.665/2023)","Norma de Execução SEFAZ-CE 01/2024, art. 2º e Anexo Único (exemplo: 162,50)",
+DF,20,0,unica,sim,2024-01-22,,"Lei DF 7.326/2023 (art. 18, II, c, da Lei 1.254/1996)","RICMS/DF, art. 48, II, §11; Consulta COTRI 12/2025",
+ES,17,0,unica,sim,2025-01-01,,"Lei ES 7.000/2001, art. 20, I","FAQ SEFAZ-ES Receita Orienta DIFAL, itens 13.a a 13.e",17% vigente antes de 2025
+GO,19,0,por_dentro,sim,2024-04-01,,"Lei GO 22.460/2023 (art. 27, I, do CTE, Lei 11.651/1991)","Parecer ECONOMIA/GEOT 77/2024 (exemplo: 1.481,48)",
+MA,22,0,unica,nao,2024-01-01,2025-02-22,"Lei MA 12.120/2023 (art. 23, III, da Lei 7.799/2002)","Solução de Consulta SEFAZ-MA 1/2024","sem fórmula nem exemplo; início dos 22% não conferido"
+MA,23,0,unica,nao,2025-02-23,,"Lei MA 12.426/2024 (art. 23, III, da Lei 7.799/2002)","Solução de Consulta SEFAZ-MA 1/2024",sem fórmula nem exemplo
+MG,18,0,por_dentro,sim,2025-01-01,,"Lei MG 6.763/1975, art. 12, I","RICMS/MG 2023, art. 12, VIII; Orientação DOLT/SUTRI 002/2016","18% vigente antes de 2025; o FEM, quando incide, entra no divisor"
+MS,17,0,dupla,nao,2025-01-01,,"Lei MS 1.810/1997, art. 41","Lei 1.810/1997, art. 18, p.ú., c/c art. 20, I, i (red. Lei 5.993/2022)","17% vigente antes de 2025; só a letra da lei, sem fórmula oficial para não contribuinte"
+MT,17,0,por_dentro,sim,2025-01-01,2026-08-11,"Lei MT 7.098/1998, art. 14, I","NT UDCR/UNERC 001/2024 (exemplo: 112,05)",17% vigente antes de 2025
+MT,17,0,unica,sim,2026-08-12,,"Lei MT 7.098/1998, art. 14, I","NT 058/2026-UDCR/UNERC, quadro 2 (exemplo: 100,00); RICMS/MT, art. 72, IX-A, §5º-B",revogou a NT 001/2024
+PA,19,0,unica,sim,2023-03-16,,"Lei PA 9.755/2022 (art. 12, VII, da Lei 5.530/1989)","Solução de Consulta SEFA-PA 5/2025",a Lei 8.315/2015 ainda prevê base dupla; a SEFA a considera suspensa pela LC 190
+PB,20,0,por_dentro,sim,2024-01-01,,"Lei PB 12.788/2023 (art. 11, I, da Lei 6.379/1996)","Lei 6.379/1996, art. 13, XI-A, §6º (red. Lei 12.308/2022)",sem exemplo oficial
+PE,20.5,0,unica,sim,2024-01-01,,"Lei PE 18.305/2023 (art. 15, VII, da Lei 15.730/2016)","Lei 15.730/2016, art. 12, XIV, §20 e art. 24 (red. Lei 17.625/2021)",
+PI,21,0,por_dentro,sim,2023-01-01,2025-03-31,"Lei PI 4.257/1989, art. 23, I, c","RICMS/PI (Dec. 21.866/2023), arts. 29, §1º, e 30, §3º",início dos 21% não conferido
+PI,22.5,0,por_dentro,sim,2025-04-01,,"Lei PI 8.558/2024 (art. 23, I, c, da Lei 4.257/1989)","RICMS/PI (Dec. 21.866/2023), arts. 29, §1º, e 30, §3º",o FECOP de 2% entra no divisor quando incide
+PR,19.5,0,unica,sim,2024-03-18,2025-01-06,"Lei PR 21.850/2023 (art. 14, VIII, da Lei 11.580/1996)","RICMS/PR, art. 541, antes do Dec. 8.527/2025",
+PR,19.5,0,por_dentro,sim,2025-01-07,,"Lei PR 21.850/2023 (art. 14, VIII, da Lei 11.580/1996)","RICMS/PR, art. 541 (red. Dec. 8.527/2025)",o Fecop de 2% entra no divisor quando incide
+RJ,20,2,unica,sim,2024-03-20,,"Lei RJ 10.253/2023 (art. 14 da Lei 2.657/1996); FECP: LC 210/2023","Consulta SEFAZ-RJ 69/2024",carga de 22% com o FECP
+RN,18,0,unica,sim,2024-01-01,2025-03-19,"Lei RN 6.968/1996, art. 27, I, a","RICMS/RN (Dec. 31.825/2022), art. 10, XXV",
+RN,20,0,unica,sim,2025-03-20,,"Lei RN 11.999/2024 (art. 27, I, a, da Lei 6.968/1996)","RICMS/RN (Dec. 31.825/2022), art. 10, XXV",
+RO,19.5,0,unica,sim,2024-01-12,,"Lei RO 5.634/2023 (art. 27, I, c, da Lei 688/1996)","RICMS/RO (Dec. 22.721/2018), art. 15, X; TATE-SEFIN/RO 20262906300042",
+RR,20,0,unica,sim,2023-03-30,,"Lei RR 1.767/2022 (art. 32 da Lei 59/1993)","RICMS/RR (Dec. 4.335-E/2001), art. 2º, §§8º e 9º",
+RS,17,0,unica,sim,2022-01-01,,"Lei RS 8.820/1989; RICMS/RS (Dec. 37.699/1997), Livro I, art. 27, X","RICMS/RS, Livro I, art. 16, I, h, notas 02 e 04",
+SC,17,0,unica,sim,2025-01-01,,"Lei SC 10.297/1996, art. 19; RICMS/SC (Dec. 2.870/2001), art. 26, I","RICMS/SC, art. 9º, §§4º e 6º",17% vigente antes de 2025
+SE,19,1,unica,sim,2023-04-01,,"Lei SE 9.176/2023 (art. 18, I, j, da Lei 3.796/1996); FECOEP: Lei 9.177/2023","RICMS/SE (Dec. 21.400/2002), art. 480-M, §1º (red. Dec. 484/2023)",FECOEP geral com exceções (RICMS/SE art. 616-C-A)
+SP,18,0,unica,nao,2009-01-01,,"Lei SP 6.374/1989, art. 34, I (red. Lei 13.230/2008)","RICMS/SP, arts. 37, XI, e 49; RC 16487/2017",a RC 25599/2022 admite leitura por dentro e não traz fórmula
+TO,20,0,dupla,sim,2024-01-01,,"Lei TO 4.141/2023 (art. 27, II, da Lei 1.287/2001)","Lei 1.287/2001, art. 22, XV; Consulta SEFAZ-TO 65/2021 (exemplo: 73,17)",

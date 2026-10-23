@@ -30,6 +30,7 @@ class DadosUF:
     fcp: Decimal
     difal_base: str  # unica | dupla | por_dentro
     difal_conferido: bool  # método confirmado em fonte oficial da UF
+    difal_fonte: str
     fonte: str
 
 
@@ -49,6 +50,7 @@ def dados_uf(uf: str, data: date) -> DadosUF:
         D(linha["fcp"]),
         linha["difal_base"],
         linha["difal_conferido"] == "sim",
+        linha["difal_fonte"],
         linha["fonte"],
     )
 

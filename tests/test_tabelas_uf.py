@@ -53,4 +53,4 @@ def test_fcp_geral():
 
 def test_data_fora_da_tabela():
     with pytest.raises(LookupError):
-        tabelas.dados_uf("SP", date(2020, 1, 1))
+        tabelas.dados_uf("SP", date(2000, 1, 1))

@@ -158,8 +158,8 @@ from tributos_br import sugerir_cclass_trib
 sugerir_cclass_trib("04090000", date(2026, 10, 23))
 # [('200034', 'Fornecimento dos alimentos destinados ao consumo humano (Anexo VII)')]
 
-Item("04090000", "1000", cclass_trib="200034")   # CST 200, alíquotas com redução de 60%
-Item("10063021", "1000", cclass_trib="200003")   # arroz, cesta básica: alíquota zero
+Item("04090000", "1000", cclass_trib="200034")  # CST 200, alíquotas com redução de 60%
+Item("10063021", "1000", cclass_trib="200003")  # arroz, cesta básica: alíquota zero
 ```
 
 A redução vem da planilha oficial do cClassTrib, e a alíquota efetiva usa 4 casas, como manda a NT 2025.002.

@@ -317,6 +317,8 @@ class _Auditoria:
             self.comparar(n, "pIPI", _dec(imposto, "IPI/IPITrib/pIPI"), t["IPI"].aliquota, t["IPI"].fundamento, ZERO)
 
         for nome in ("PIS", "COFINS"):
+            if nome not in t:
+                continue  # extintos a partir de 2027
             g, e = _grupo(imposto, nome), t[nome]
             if self.regime == Regime.SIMPLES:
                 # ERP costuma preencher vBC com alíquota zero no PISOutr: no Simples só o valor importa

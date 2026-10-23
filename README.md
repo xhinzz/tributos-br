@@ -72,7 +72,7 @@ flowchart LR
 |---|---|---|
 | **IPI** | Alíquota pelo NCM e EX, NT (CST 53), alíquota zero (51), Simples sem destaque, zerado a partir de 2027 (EC 132) | TIPI oficial da Receita (11.102 NCMs), gerada por script |
 | **ICMS interestadual** | 4%, 7% ou 12% pela origem da mercadoria e pelo par de UFs | Res. Senado 22/1989 e 13/2012 |
-| **ICMS interno e FCP** | Alíquota modal das 27 UFs com vigência (AL, MA, PI e RN mudaram em 2025/2026), FCP geral (AL, RJ, SE), alíquota própria do produto | Lei de ICMS de cada UF, citada linha a linha |
+| **ICMS interno e FCP** | Alíquota modal das 27 UFs com vigência (AL, MA, PI e RN mudaram em 2025/2026), FCP geral (AL, RJ, SE); **alíquota própria do produto em SP, MG, PR e RJ** (12% de móveis e máquinas, 20% a 30% de bebidas, fumo e cosméticos), inclusive a que muda na venda a consumidor final (PR) e os fundos que só incidem nela (FECOP, FECOEP, FEM) | Lei de ICMS de cada UF; RICMS/SP, RICMS/MG, Lei PR 11.580 e RICMS/RJ, artigo por artigo |
 | **Base do ICMS** | Frete, seguro, outras despesas, desconto incondicional e IPI na base quando o destino é consumidor final (CF art. 155, §2º, XI) | LC 87/1996, art. 13 |
 | **DIFAL** | Venda a não contribuinte com os três métodos usados pelas UFs (base única, base dupla e por dentro), FCP do destino, Simples fora (ADI 5.464) | Método de cada UF tirado do RICMS, de consulta ou de norma de execução estadual (22 das 27 confirmadas) |
 | **ICMS-ST** | Se a operação interestadual tem ST (signatárias do acordo do segmento, com as exceções por CEST e UF), MVA do próprio ato ou da UF de destino, MVA ajustada, IPI na base, dedução do ICMS próprio (inclusive a presumida do Simples), FCP-ST líquido do FCP próprio, CEST × NCM | Conv. 142/2018 (1.030 CESTs) e 11 acordos de segmento conferidos no CONFAZ (autopeças, cimento, bebidas, tintas, pneus, lâmpadas, materiais de construção, medicamentos, combustíveis, cigarros) |
@@ -286,7 +286,8 @@ tributos_br/dados/
 ├── beneficios.csv   regras de benefício (redução, carga, isenção, diferimento) com vigência
 ├── mva.csv          MVA por UF de destino e CEST, com vigência
 ├── st_acordos.csv   signatários e exceções dos acordos de ST, com vigência
-└── pis_cofins_monofasico.csv  NCMs e alíquotas do monofásico (anexos da Lei 10.485 ← atualizar_monofasicos.py)
+├── pis_cofins_monofasico.csv  NCMs e alíquotas do monofásico (anexos da Lei 10.485 ← atualizar_monofasicos.py)
+└── aliquotas_produto.csv      alíquota interna própria do produto por UF e destinatário, com vigência
 ```
 
 Mudança de alíquota é uma linha nova no CSV com `vigencia_inicio`, não uma alteração de código; notas antigas
@@ -309,6 +310,11 @@ O que a biblioteca **não** faz, para não passar uma confiança que ela não te
   segue a letra da lei e o resultado traz `extras["conferir"]`.
 - **Valor desonerado.** Usa a fórmula simples (base cheia × alíquota − ICMS devido). Algumas UFs exigem outra (o RJ
   calcula por dentro).
+- **Alíquota por produto.** Só SP, MG, PR e RJ, e só os produtos que a norma identifica por NCM e cujo código existe
+  na NCM vigente (um teste confere). Ficam fora: produtos descritos só por texto (carnes, farinhas, cesta básica,
+  energia), códigos NBM de 1996 que a norma ainda cita, combustíveis (ICMS por litro), casos em que o NCM é bem mais
+  amplo que a descrição (soluções parenterais no 3004.90.99) e as reduções de base de MG (Anexo II). Nas demais
+  UFs, informe `aliquota_icms` quando o produto tiver alíquota própria.
 - **Monofásico.** O que o NCM não decide sai com `extras["conferir"]`: autopeça vendida a montadora (1,65% e 7,6%,
   CST 01), caminhão com redução de 30,2% pela carga útil, varejista de bebida fria que revende a zero (informe
   `pis_cofins="aliquota_zero"`), produtos restritos a "Ex". Os códigos da TIPI de 2012 citados nas leis foram

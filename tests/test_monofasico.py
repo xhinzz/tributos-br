@@ -69,13 +69,14 @@ def test_pneu_na_revenda():
 
 def test_bebida_fria_tributa_atacado_e_reduz_para_consumidor_final():
     pis, cofins = pis_cofins_de(FABRICANTE, "22030000")
-    assert (pis.cst, pis.valor, cofins.valor) == ("02", D("19.02"), D("87.58"))  # 820 × 2,32% e 10,68%
+    # cerveja em SP é 20% (RICMS/SP, art. 54-A): base 1000 − 200 = 800 × 2,32% e 10,68%
+    assert (pis.cst, pis.valor, cofins.valor) == ("02", D("18.56"), D("85.44"))
     atacado, _ = pis_cofins_de(COMERCIO, "22030000")
     assert (atacado.cst, atacado.aliquota) == ("02", D("2.32")) and "varejista" in atacado.extras["conferir"]
     # art. 25, §1º: 2,32% × (1 − 19,82%) = 1,8602%; 10,68% × (1 − 20,03%) = 8,5408%
     pis, cofins = pis_cofins_de(FABRICANTE, "22030000", Participante("SP", contribuinte_icms=False))
     assert (pis.aliquota, cofins.aliquota) == (D("1.8602"), D("8.5408"))
-    assert (pis.valor, cofins.valor) == (D("15.25"), D("70.03"))
+    assert (pis.valor, cofins.valor) == (D("14.88"), D("68.33"))  # 800 × 1,8602% e 8,5408%
 
 
 def test_varejista_de_bebida_informa_aliquota_zero():

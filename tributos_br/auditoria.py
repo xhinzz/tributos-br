@@ -261,11 +261,11 @@ class _Auditoria:
             beneficio=beneficio,
             pis_cofins=_SEM_PIS_COFINS.get(_txt(_grupo(imposto, "PIS"), "CST")),
             cclass_trib=_txt(imposto, "IBSCBS/cClassTrib") or "000001",
-            aliquota_icms=self.aliquota_propria(n, imposto, icms),
+            aliquota_icms=self.aliquota_propria(n, imposto, icms, ncm),
         )
 
-    def aliquota_propria(self, n, imposto, icms) -> Decimal | None:
-        """Alíquota interna do produto que difere da modal: aceita da nota, com aviso."""
+    def aliquota_propria(self, n, imposto, icms, ncm) -> Decimal | None:
+        """Alíquota interna que difere da do produto (ou da modal): aceita da nota, com aviso."""
         if self.regime == Regime.SIMPLES:
             return None
         if self.uf_emit == self.uf_dest:
@@ -274,17 +274,15 @@ class _Auditoria:
             informada, uf = _dec(imposto, "ICMSUFDest/pICMSUFDest"), self.uf_dest
         if informada is None or informada == 0:
             return None
-        modal = tabelas.dados_uf(uf, self.data).aliquota_interna
-        if informada == modal:
+        produto = tabelas.aliquota_produto(uf, ncm, self.data, final=self.consumidor_final)
+        esperada = produto.aliquota if produto else tabelas.dados_uf(uf, self.data).aliquota_interna
+        if informada == esperada:
             return None
-        self.anotar(
-            "aviso",
-            "alíquota interna",
-            informada,
-            modal,
-            n,
-            f"diferente da modal de {uf}: confira se o produto tem alíquota própria",
-        )
+        if produto:
+            detalhe = f"{uf} tem {esperada}% para este NCM ({produto.fundamento})"
+        else:
+            detalhe = f"diferente da modal de {uf}: confira se o produto tem alíquota própria"
+        self.anotar("aviso", "alíquota interna", informada, esperada, n, detalhe)
         return informada
 
     def regras(self, n, det, item: Item, t: dict):

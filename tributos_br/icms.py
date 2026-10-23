@@ -32,12 +32,20 @@ class _Aplicado:
     reducao_destino: Decimal
 
 
-def _interna(item: Item, uf: str, nota: Nota) -> tuple[Decimal, Decimal, str]:
-    """(alíquota interna, FCP, fundamento)."""
+def _interna(item: Item, uf: str, nota: Nota, st: bool = False) -> tuple[Decimal, Decimal, str, str]:
+    """(alíquota interna, FCP, fundamento, conferir): a do item, a do produto na UF ou a modal."""
     dados = tabelas.dados_uf(uf, nota.data)
     if item.aliquota_icms is not None:
-        return item.aliquota_icms, dados.fcp, "alíquota interna informada para o produto"
-    return dados.aliquota_interna, dados.fcp, f"alíquota modal de {uf} ({dados.fonte})"
+        return item.aliquota_icms, dados.fcp, "alíquota interna informada para o produto", ""
+    if produto := tabelas.aliquota_produto(uf, item.ncm, nota.data, final=nota.consumidor_final or st):
+        fcp = dados.fcp if produto.fcp is None else produto.fcp
+        return produto.aliquota, fcp, f"alíquota de {uf} para o produto ({produto.fundamento})", produto.condicao
+    return dados.aliquota_interna, dados.fcp, f"alíquota modal de {uf} ({dados.fonte})", ""
+
+
+def _avisar(extras: dict, texto: str):
+    if texto:
+        extras["conferir"] = "; ".join(filter(None, (extras.get("conferir"), texto)))
 
 
 def _beneficio(item: Item, nota: Nota, aliquota: Decimal) -> _Aplicado | None:
@@ -72,9 +80,9 @@ def calcular(nota: Nota, item: Item, valor_ipi: Decimal) -> dict[str, Tributo]:
     base_cheia = item.valor_operacao + (valor_ipi if nota.consumidor_final else ZERO)
     if nota.interestadual:
         aliquota, fundamento = aliquota_interestadual(emit.uf, dest.uf, item.origem)
-        fcp = ZERO  # FCP de origem não vai na interestadual
+        fcp, conferir = ZERO, ""  # FCP de origem não vai na interestadual
     else:
-        aliquota, fcp, fundamento = _interna(item, emit.uf, nota)
+        aliquota, fcp, fundamento, conferir = _interna(item, emit.uf, nota)
 
     beneficio = _beneficio(item, nota, aliquota)
     reducao = beneficio.percentual if beneficio and beneficio.tratamento == Tratamento.REDUCAO_BASE else ZERO
@@ -89,6 +97,7 @@ def calcular(nota: Nota, item: Item, valor_ipi: Decimal) -> dict[str, Tributo]:
         tributos["ICMS"] = _simples(item, nota, beneficio, st is not None)
     else:
         tributos["ICMS"] = _proprio(base, base_cheia, aliquota, icms_cheio, beneficio, fundamento)
+        _avisar(tributos["ICMS"].extras, conferir)
         valor_fcp = ZERO
         if fcp and tributos["ICMS"].valor:
             valor_fcp = centavos(base * pct(fcp))
@@ -163,7 +172,7 @@ def _difal(
         # STF, ADI 5.464
         return {}
     dest = nota.destinatario.uf
-    aliquota_dest, fcp, fundamento = _interna(item, dest, nota)
+    aliquota_dest, fcp, fundamento, conferir = _interna(item, dest, nota)
     dados = tabelas.dados_uf(dest, nota.data)
     metodo = nota.metodo_difal or dados.difal_base
     reducao = beneficio.reducao_destino if beneficio else ZERO
@@ -186,6 +195,7 @@ def _difal(
         extras["reducao_base_destino"] = reducao
     if not nota.metodo_difal and not dados.difal_conferido:
         extras["conferir"] = f"método do DIFAL de {dest} sem confirmação em fonte oficial da UF"
+    _avisar(extras, conferir)
     modo = {"unica": "base única", "dupla": "base dupla", "por_dentro": "base por dentro"}[metodo]
     origem_metodo = "informado na nota" if nota.metodo_difal else dados.difal_fonte
     resultado = {
@@ -240,7 +250,8 @@ def _substituicao(
     if acordo:
         origem_mva += f"; {acordo.fundamento}"
 
-    aliquota_dest, fcp, _ = _interna(item, dest.uf, nota)
+    aliquota_dest, fcp, _, conferir = _interna(item, dest.uf, nota, st=True)
+    _avisar(extras, conferir)
     mva_aplicada = mva
     # sem ajuste para o Simples (Conv. 142/18, cl. 11ª, §1º) nem com interna ≤ inter (Prot. 41/08, §7º)
     if nota.interestadual and aliquota_dest > aliquota_propria and nota.emitente.regime != Regime.SIMPLES:

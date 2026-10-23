@@ -359,3 +359,41 @@ def monofasico(ncm: str, data: date) -> Monofasico | None:
         "; ".join(filter(None, (extra, linha["conferir"]))),
         linha["fundamento"],
     )
+
+
+@dataclass(frozen=True)
+class AliquotaProduto:
+    aliquota: Decimal
+    fcp: Decimal | None  # None: vale o FCP geral da UF
+    condicao: str  # o que o NCM sozinho não decide
+    fundamento: str
+
+
+@lru_cache(maxsize=1)
+def _aliquotas_produto() -> list[dict[str, str]]:
+    return _ler("aliquotas_produto.csv")
+
+
+def aliquota_produto(uf: str, ncm: str, data: date, final: bool = False) -> AliquotaProduto | None:
+    """Alíquota interna própria do produto na UF.
+
+    `final`: venda a consumidor final (ou ST que leva a ele). Há UF em que a alíquota muda com isso (PR) e
+    adicional de fundo que só vale aí (FECOEP/SP, FEM/MG, FECOP/PR). Prefixo mais longo vence; no empate, a
+    linha específica do destinatário.
+    """
+    contexto = "final" if final else "nao_final"
+    candidatas = []
+    for linha in _aliquotas_produto():
+        if linha["uf"] != uf or linha["destinatario"] not in ("", contexto) or not _vigente(linha, data):
+            continue
+        if any(ncm.startswith(e) for e in filter(None, linha["excecoes"].split("|"))):
+            continue
+        prefixo = max((p for p in linha["ncm"].split("|") if p and ncm.startswith(p)), key=len, default=None)
+        if prefixo:
+            candidatas.append((len(prefixo), bool(linha["destinatario"]), linha))
+    if not candidatas:
+        return None
+    linha = max(candidatas, key=lambda c: c[:2])[2]
+    return AliquotaProduto(
+        D(linha["aliquota"]), D(linha["fcp"]) if linha["fcp"] else None, linha["condicao"], linha["fundamento"]
+    )

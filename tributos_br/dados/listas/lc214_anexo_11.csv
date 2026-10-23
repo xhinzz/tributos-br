@@ -1,0 +1,37 @@
+item,ncm,descricao
+2.1,8709,Viatura operacional militar e também suas partes e peças
+2.2,87100000,"Carro blindado e carro de combate, terrestre ou anfíbio, sobre lagartas ou rodas, com ou sem armamento e também suas partes e peças"
+2.3,8709,"Outros veículos de qualquer tipo, para uso pelos órgãos de Segurança Pública e das Forças Armadas, com especificação própria dos Órgãos Militares e de Segurança Pública e também suas partes e peças"
+2.4,90318099,Simuladores de veículos militares
+2.5,8701,"Tratores de baixa ou de alta velocidades, para uso pelos órgãos de Segurança Pública e das Forças Armadas, sobre lagartas ou rodas, destinados às unidades de engenharia ou de artilharia, para obras ou"
+2.6,85261000,Radares para uso militar
+2.7,93012000,Foguetes para uso militar
+2.8,36020000,Explosivos de emprego militar
+2.8,9306,Explosivos de emprego militar
+2.9,85258929,Optrônicos
+2.10,21069030,Rações operacionais
+2.11,9306,Minas marítimas
+2.12,93062,"Cartuchos de munição naval e de artilharia e seus componentes (projétil, estojo, estopilha, espoleta, traçador, pólvora e alto-explosivo), de calibre igual ou superior a 40 mm de diâmetro interno de t"
+2.13,9306,"Bombas, torpedos, minas, mísseis, foguetes e seus componentes"
+2.14,8802,"Aeronaves, inclusive Veículo Aéreo Não Tripulado (VANT) para uso pela segurança nacional e também suas partes e peças"
+2.14,8806,"Aeronaves, inclusive Veículo Aéreo Não Tripulado (VANT) para uso pela segurança nacional e também suas partes e peças"
+2.15,88026000,Veículos espaciais para uso pela segurança nacional
+2.16,88040000,Paraquedas para uso pela segurança nacional
+2.17,88051000,Aparelhos e dispositivos para lançamento e aterrissagem de veículos aéreos e espaciais para uso pela segurança nacional
+2.18,88052100,Simuladores de voo e similares para uso pela segurança nacional
+2.19,8805,Equipamentos de apoio no solo para uso pela segurança nacional
+2.20,901420,"Equipamentos de auxílio à comunicação, navegação e controle de tráfego aéreo para uso pela segurança nacional"
+2.21,89012000,"Embarcações construídas no País suas peças, partes e componentes utilizados no reparo, conserto e reconstrução de embarcações"
+2.21,89061000,"Embarcações construídas no País suas peças, partes e componentes utilizados no reparo, conserto e reconstrução de embarcações"
+2.22,85176259,Dispositivos destinados a prover a segurança da informação do tipo Prevenção de Intrusão (IPS)
+2.23,85176259,Dispositivos destinados a prover a segurança da informação do tipo de Detecção de Intrusão (IDS)
+2.24,852352,"Dispositivos de Autenticação (tokens, leitores biométricos) que garantam a segurança da informação/cibernética"
+2.24,84719014,"Dispositivos de Autenticação (tokens, leitores biométricos) que garantam a segurança da informação/cibernética"
+2.25,84715090,Equipamentos para criptografia para a segurança da informação/cibernética
+2.26,85176259,Firewalls para a segurança da informação/cibernética
+2.26,84714900,Firewalls para a segurança da informação/cibernética
+2.27,85176234,Switches e roteadores seguros para a segurança da informação/cibernética
+2.27,8517624,Switches e roteadores seguros para a segurança da informação/cibernética
+2.28,8517627,Dispositivos de comunicação criptografada para a segurança da informação/cibernética
+2.29,852351,Unidades de armazenamento criptografadas para a segurança da informação/cibernética
+2.30,852351,Servidores de armazenamento seguro para a segurança da informação/cibernética

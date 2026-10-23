@@ -187,3 +187,64 @@ def mva(uf_destino: str, ncm: str, cest: str | None, data: date) -> tuple[Decima
         return None
     linha = max(candidatas, key=lambda c: c[:2])[2]
     return D(linha["mva"]), linha["fundamento"]
+
+
+@dataclass(frozen=True)
+class ClassTrib:
+    cst: str
+    codigo: str
+    nome: str
+    tipo: str  # Padrão | Sem alíquota | Fixa | Uniforme...
+    red_ibs: Decimal
+    red_cbs: Decimal
+    anexo: int | None  # anexo da LC 214 com a lista de NCMs
+    fundamento: str
+
+
+@lru_cache(maxsize=1)
+def _cclass() -> dict[str, list[dict[str, str]]]:
+    tabela: dict[str, list[dict[str, str]]] = {}
+    for linha in _ler("cclass_trib.csv"):
+        tabela.setdefault(linha["cclass_trib"], []).append(linha)
+    return tabela
+
+
+def cclass_trib(codigo: str, data: date) -> ClassTrib:
+    """IT 2025.002. ValueError se não existe, não vale na data ou não é de NF-e."""
+    linhas = _cclass().get(codigo)
+    if not linhas:
+        raise ValueError(f"cClassTrib {codigo} não existe")
+    linha = next((x for x in linhas if _vigente(x, data)), None)
+    if linha is None:
+        raise ValueError(f"cClassTrib {codigo} sem vigência em {data:%d/%m/%Y}")
+    if linha["nfe"] != "1":
+        raise ValueError(f"cClassTrib {codigo} não é usado em NF-e")
+    fundamento = f"LC 214/2025, {linha['fundamento']}" if linha["fundamento"] else "LC 214/2025"
+    return ClassTrib(
+        linha["cst"],
+        codigo,
+        linha["nome"],
+        linha["tipo"],
+        D(linha["p_red_ibs"]),
+        D(linha["p_red_cbs"]),
+        int(linha["anexo"]) if linha["anexo"] else None,
+        fundamento,
+    )
+
+
+def no_anexo_lc214(anexo: int, ncm: str) -> bool:
+    """Exceção ("!0709 5" para "exceto ... 0709.5") vence a inclusão mais genérica."""
+    codigos = _lista(f"lc214_anexo_{anexo}")
+    if any(ncm.startswith(c[1:]) for c in codigos if c.startswith("!")):
+        return False
+    return any(ncm.startswith(c) for c in codigos if not c.startswith("!"))
+
+
+def sugerir_cclass_trib(ncm: str, data: date) -> list[tuple[str, str]]:
+    """cClassTrib de NF-e cujo anexo da LC 214 lista o NCM."""
+    saida = []
+    for codigo, linhas in _cclass().items():
+        linha = next((x for x in linhas if _vigente(x, data)), None)
+        if linha and linha["nfe"] == "1" and linha["anexo"] and no_anexo_lc214(int(linha["anexo"]), ncm):
+            saida.append((codigo, linha["nome"]))
+    return saida

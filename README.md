@@ -35,9 +35,9 @@ DIFAL      1150.00 ×   20% =   92.00  CST -    EC 87/2015, LC 190/2022; base ú
 FCP_DIFAL  1150.00 ×    2% =   23.00  CST -    FCP de RJ
 PIS         862.00 × 1.65% =   14.22  CST 01   não cumulativo (Leis 10.637/2002 e 10.833/2003); base sem o ICMS (STF, Tema 69)
 COFINS      862.00 ×  7.6% =   65.51  CST 01   não cumulativo (Leis 10.637/2002 e 10.833/2003); base sem o ICMS (STF, Tema 69)
-CBS         667.27 ×  0.9% =    6.01  CST 000  LC 214/2025 (arts. 343 e 346, alíquotas de 2026); base do art. 12
-IBS_UF      667.27 ×  0.1% =    0.67  CST 000  LC 214/2025 (arts. 343 e 346, alíquotas de 2026); base do art. 12
-IBS_MUN     667.27 ×    0% =    0.00  CST 000  LC 214/2025 (arts. 343 e 346, alíquotas de 2026); base do art. 12
+CBS         667.27 ×  0.9% =    6.01  CST 000  LC 214/2025; Situações tributadas integralmente pelo IBS e CBS.; alíquotas de 2026 (arts. 343 e 346)
+IBS_UF      667.27 ×  0.1% =    0.67  CST 000  LC 214/2025; Situações tributadas integralmente pelo IBS e CBS.; alíquotas de 2026 (arts. 343 e 346)
+IBS_MUN     667.27 ×    0% =    0.00  CST 000  LC 214/2025; Situações tributadas integralmente pelo IBS e CBS.; alíquotas de 2026 (arts. 343 e 346)
 ```
 
 O IPI entra na base do ICMS porque o destino é consumidor final; o DIFAL e o FCP do RJ vão para o destino; PIS e
@@ -79,7 +79,7 @@ flowchart LR
 | **Benefícios** | Redução de base (CST 20/70), isenção (40), não tributada (41), diferimento (51) com vICMSOp/vICMSDif, valor desonerado, cBenef, carga efetiva | Conv. ICMS 52/91 (Anexos I e II, 581 NCMs) e 100/97 (cl. 1ª, 2ª e 3ª-A) prontos; os demais, informados |
 | **Simples Nacional** | CSOSN 101/102/201/202/400 e crédito do art. 23 da LC 123 só quando cabe | LC 123/2006 |
 | **PIS/COFINS** | Lucro Real (1,65% + 7,6%) e Presumido (0,65% + 3%), base sem o ICMS, monofásico, alíquota zero, isenção, suspensão, Simples (CST 49) | Leis 10.637, 10.833, 9.715 e 9.718; STF Tema 69 |
-| **IBS/CBS** | Alíquotas de teste de 2026, base do art. 12 da LC 214 (sem IPI, ICMS, FCP, DIFAL, PIS e COFINS), CST 000 / cClassTrib 000001, Simples fora em 2026 | LC 214/2025; NT 2025.002-RTC v1.52 |
+| **IBS/CBS** | Alíquotas de teste de 2026, base do art. 12 da LC 214 (sem IPI, ICMS, FCP, DIFAL, PIS e COFINS), os 173 cClassTrib oficiais com redução (cesta básica a zero, 60% para alimentos, higiene, insumos agro), conferência do NCM nos anexos da LC 214, Simples fora em 2026 | IT 2025.002 (planilha do Portal da NF-e) e anexos da LC 214, gerados por script |
 | **CNPJ** | Validação do numérico e do **alfanumérico** (IN RFB 2.229/2024) e preenchimento da UF e do Simples pela BrasilAPI | — |
 
 Cada tabela traz a fonte de cada linha. Onde a pesquisa não achou confirmação oficial, a linha é marcada e o
@@ -150,6 +150,23 @@ Beneficio("diferimento", percentual="100")
 No DIFAL e na ST, a redução da UF de destino entra quando a regra também vale lá (o Conv. 52/91, cl. 5ª, manda o
 DIFAL respeitar a carga interna) ou quando você informa `reducao_destino`.
 
+### IBS/CBS por cClassTrib
+
+```python
+from tributos_br import sugerir_cclass_trib
+
+sugerir_cclass_trib("04090000", date(2026, 10, 23))
+# [('200034', 'Fornecimento dos alimentos destinados ao consumo humano (Anexo VII)')]
+
+Item("04090000", "1000", cclass_trib="200034")  # CST 200, alíquotas com redução de 60%
+Item("10063021", "1000", cclass_trib="200003")  # arroz, cesta básica: alíquota zero
+```
+
+A redução vem da planilha oficial do cClassTrib, e a alíquota efetiva usa 4 casas, como manda a NT 2025.002.
+Quando o cClassTrib aponta para um anexo da LC 214, o NCM é conferido na lista do anexo, respeitando as
+exceções da própria lei ("crustáceos 0306.1, exceto 0306.11"); fora dela, o resultado traz `extras["conferir"]`.
+Diferimento (CST 510/515), monofásico de combustíveis e alíquota fixa ainda não são calculados.
+
 ### Substituição tributária
 
 A ST entra quando o destinatário é contribuinte que vai revender e há MVA, informada no item (`mva="40"`) ou
@@ -218,7 +235,8 @@ tributos_br/dados/
 ├── ufs.csv          alíquota modal, FCP e método do DIFAL por UF, com vigência e lei
 ├── tipi.csv         TIPI (NCM, EX, alíquota)                       ← scripts/atualizar_tipi.py
 ├── cest.csv         CEST × NCM × segmento do Conv. 142/2018         ← scripts/atualizar_convenios.py
-├── listas/          NCMs dos Anexos I e II do Conv. 52/91           ← scripts/atualizar_convenios.py
+├── listas/          NCMs do Conv. 52/91 e dos anexos da LC 214      ← atualizar_convenios.py, atualizar_reforma.py
+├── cclass_trib.csv  os 173 cClassTrib do IBS/CBS                    ← scripts/atualizar_reforma.py
 ├── beneficios.csv   regras de benefício (redução, carga, isenção, diferimento) com vigência
 └── mva.csv          MVA por UF de destino e CEST, com vigência
 ```
@@ -252,6 +270,7 @@ pytest              # esperados calculados à mão, com a conta no comentário; 
 ruff check . && ruff format --check .
 python scripts/atualizar_tipi.py        # baixa a TIPI da Receita
 python scripts/atualizar_convenios.py   # baixa os Convênios 142/2018 e 52/1991 do CONFAZ
+python scripts/atualizar_reforma.py     # baixa o cClassTrib (Portal da NF-e) e a LC 214 (Planalto)
 python scripts/gerar_imagens.py         # refaz os prints do README
 ```
 

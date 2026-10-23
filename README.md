@@ -325,6 +325,10 @@ O que a biblioteca **não** faz, para não passar uma confiança que ela não te
 
 O cálculo é uma ferramenta de apoio e não substitui a validação do responsável fiscal da empresa.
 
+Dúvida de uso ou caso fiscal que a biblioteca calcula diferente do seu ERP? Abra em
+[Discussions → Q&A](https://github.com/xhinzz/tributos-br/discussions/categories/q-a), com a operação (UFs, regime,
+NCM, valores) e o que você esperava. Erro confirmado vira issue.
+
 ## Desenvolvimento
 
 ```bash

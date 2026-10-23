@@ -78,7 +78,7 @@ flowchart LR
 | **ICMS-ST** | Se a operação interestadual tem ST (signatárias do acordo do segmento, com as exceções por CEST e UF), MVA do próprio ato ou da UF de destino, MVA ajustada, IPI na base, dedução do ICMS próprio (inclusive a presumida do Simples), FCP-ST líquido do FCP próprio, CEST × NCM | Conv. 142/2018 (1.030 CESTs) e 11 acordos de segmento conferidos no CONFAZ (autopeças, cimento, bebidas, tintas, pneus, lâmpadas, materiais de construção, medicamentos, combustíveis, cigarros) |
 | **Benefícios** | Redução de base (CST 20/70), isenção (40), não tributada (41), diferimento (51) com vICMSOp/vICMSDif, valor desonerado, cBenef, carga efetiva | Conv. ICMS 52/91 (Anexos I e II, 581 NCMs) e 100/97 (cl. 1ª, 2ª e 3ª-A) prontos; os demais, informados |
 | **Simples Nacional** | CSOSN 101/102/201/202/400 e crédito do art. 23 da LC 123 só quando cabe | LC 123/2006 |
-| **PIS/COFINS** | Lucro Real (1,65% + 7,6%) e Presumido (0,65% + 3%), base sem o ICMS, monofásico, alíquota zero, isenção, suspensão, Simples (CST 49) | Leis 10.637, 10.833, 9.715 e 9.718; STF Tema 69 |
+| **PIS/COFINS** | Lucro Real (1,65% + 7,6%) e Presumido (0,65% + 3%), base sem o ICMS, **monofásico pelo NCM** (medicamentos, perfumaria, veículos com base reduzida, autopeças dos Anexos I e II, pneus, bebidas frias): alíquota concentrada no fabricante (CST 02) e zero na revenda (CST 04); alíquota zero, isenção, suspensão, Simples (CST 49); extintos a partir de 2027 | Leis 10.637, 10.833, 9.715, 9.718, 10.147, 10.485 e 13.097; STF Tema 69; EC 132 (ADCT, art. 126, II) |
 | **IBS/CBS** | Alíquotas de teste de 2026, base do art. 12 da LC 214 (sem IPI, ICMS, FCP, DIFAL, PIS e COFINS), os 173 cClassTrib oficiais com redução (cesta básica a zero, 60% para alimentos, higiene, insumos agro), conferência do NCM nos anexos da LC 214, Simples fora em 2026 | IT 2025.002 (planilha do Portal da NF-e) e anexos da LC 214, gerados por script |
 | **Auditoria de NF-e** | Lê o XML (com ou sem `nfeProc` e namespace), confere a conta da própria nota e recalcula pela legislação: alíquota interestadual, DIFAL esquecido, CST/CSOSN, base do IBS/CBS, cClassTrib, CEST | NT 2016.002, NT 2025.002 e as mesmas tabelas do cálculo |
 | **CNPJ** | Validação do numérico e do **alfanumérico** (IN RFB 2.229/2024) e preenchimento da UF e do Simples pela BrasilAPI | — |
@@ -283,7 +283,8 @@ tributos_br/dados/
 ├── cclass_trib.csv  os 173 cClassTrib do IBS/CBS                    ← scripts/atualizar_reforma.py
 ├── beneficios.csv   regras de benefício (redução, carga, isenção, diferimento) com vigência
 ├── mva.csv          MVA por UF de destino e CEST, com vigência
-└── st_acordos.csv   signatários e exceções dos acordos de ST, com vigência
+├── st_acordos.csv   signatários e exceções dos acordos de ST, com vigência
+└── pis_cofins_monofasico.csv  NCMs e alíquotas do monofásico (anexos da Lei 10.485 ← atualizar_monofasicos.py)
 ```
 
 Mudança de alíquota é uma linha nova no CSV com `vigencia_inicio`, não uma alteração de código; notas antigas
@@ -306,8 +307,13 @@ O que a biblioteca **não** faz, para não passar uma confiança que ela não te
   segue a letra da lei e o resultado traz `extras["conferir"]`.
 - **Valor desonerado.** Usa a fórmula simples (base cheia × alíquota − ICMS devido). Algumas UFs exigem outra (o RJ
   calcula por dentro).
-- **Fora do escopo:** serviços (ISS), Imposto Seletivo (2027), monofásicos na ponta do fabricante ou importador,
-  ST em uso e consumo, Zona Franca de Manaus, devolução e complemento.
+- **Monofásico.** O que o NCM não decide sai com `extras["conferir"]`: autopeça vendida a montadora (1,65% e 7,6%,
+  CST 01), caminhão com redução de 30,2% pela carga útil, varejista de bebida fria que revende a zero (informe
+  `pis_cofins="aliquota_zero"`), produtos restritos a "Ex". Os códigos da TIPI de 2012 citados nas leis foram
+  correlacionados com a NCM 2022, e um teste garante que todos existem na TIPI vigente; os 3002.90.20/92/99, sem
+  correspondente direto, ficaram de fora. Combustíveis (ad rem) não são tratados.
+- **Fora do escopo:** serviços (ISS), Imposto Seletivo (2027), ST em uso e consumo, Zona Franca de Manaus,
+  devolução e complemento.
 
 O cálculo é uma ferramenta de apoio e não substitui a validação do responsável fiscal da empresa.
 
@@ -320,6 +326,7 @@ ruff check . && ruff format --check .
 python scripts/atualizar_tipi.py        # baixa a TIPI da Receita
 python scripts/atualizar_convenios.py   # baixa os Convênios 142/2018 e 52/1991 do CONFAZ
 python scripts/atualizar_reforma.py     # baixa o cClassTrib (Portal da NF-e) e a LC 214 (Planalto)
+python scripts/atualizar_monofasicos.py # baixa os anexos de autopeças da Lei 10.485 (Planalto)
 python scripts/gerar_imagens.py         # refaz os prints do README
 ```
 

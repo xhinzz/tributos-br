@@ -293,3 +293,69 @@ def acordo_st(cest: str, uf_origem: str, uf_destino: str, data: date) -> AcordoS
             mva = D(linha["mva"]) if linha["mva"] and not proprio else None
             return AcordoST(linha["codigo"], linha["ato"], linha["base"], mva, linha["fundamento"])
     return None
+
+
+@dataclass(frozen=True)
+class Monofasico:
+    grupo: str
+    pis: Decimal  # do fabricante ou importador
+    cofins: Decimal
+    reducao_base: Decimal
+    cst_revenda: str  # 04 no monofásico clássico; 02 em bebidas frias, que tributam o atacado
+    pis_revenda: Decimal
+    cofins_revenda: Decimal
+    reducao_final: tuple[Decimal, Decimal] | None  # (PIS, COFINS) na venda a consumidor final
+    conferir: str
+    fundamento: str
+
+
+@lru_cache(maxsize=1)
+def _monofasicos() -> list[dict[str, str]]:
+    return _ler("pis_cofins_monofasico.csv")
+
+
+@cache
+def _ex_da_lista(nome: str) -> dict[str, str]:
+    """NCM -> aviso do item (restrição a Ex, correlação com a NCM 2022)."""
+    avisos = {}
+    for linha in _ler(f"listas/{nome}.csv"):
+        ex = f"só o {linha['ex']} do código {linha['ncm']}" if linha.get("ex") else ""
+        avisos[linha["ncm"]] = "; ".join(filter(None, (ex, linha.get("nota", ""))))
+    return avisos
+
+
+def _casa_monofasico(linha: dict[str, str], ncm: str) -> tuple[int, str] | None:
+    """(tamanho do prefixo, aviso extra) quando o NCM está na linha."""
+    if linha["ncm"].startswith("@"):
+        ex = _ex_da_lista(linha["ncm"][1:])
+        prefixo = max((c for c in ex if ncm.startswith(c)), key=len, default=None)
+        if prefixo is None:
+            return None
+        return len(prefixo), ex[prefixo]
+    if not ncm.startswith(linha["ncm"]) or any(ncm.startswith(e) for e in filter(None, linha["excecoes"].split("|"))):
+        return None
+    return len(linha["ncm"]), ""
+
+
+def monofasico(ncm: str, data: date) -> Monofasico | None:
+    """PIS/COFINS concentrado no fabricante ou importador; prefixo de NCM mais longo vence."""
+    candidatas = []
+    for linha in _monofasicos():
+        if _vigente(linha, data) and (casou := _casa_monofasico(linha, ncm)):
+            candidatas.append((casou[0], casou[1], linha))
+    if not candidatas:
+        return None
+    _, extra, linha = max(candidatas, key=lambda c: c[0])
+    reducao = linha["reducao_final"].split("|") if linha["reducao_final"] else None
+    return Monofasico(
+        linha["grupo"],
+        D(linha["pis"]),
+        D(linha["cofins"]),
+        D(linha["reducao_base"] or 0),
+        linha["cst_revenda"],
+        D(linha["pis_revenda"] or 0),
+        D(linha["cofins_revenda"] or 0),
+        (D(reducao[0]), D(reducao[1])) if reducao else None,
+        "; ".join(filter(None, (extra, linha["conferir"]))),
+        linha["fundamento"],
+    )

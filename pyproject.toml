@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tributos-br"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Cálculo dos tributos de NF-e de mercadoria: IPI, ICMS, FCP, DIFAL, ST, benefícios, PIS/COFINS e IBS/CBS, com fonte legal em cada valor."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -23,9 +23,13 @@ dev = ["pytest>=8", "ruff>=0.6", "openpyxl>=3.1", "rich>=13"]
 
 [project.urls]
 Repository = "https://github.com/xhinzz/tributos-br"
+Changelog = "https://github.com/xhinzz/tributos-br/blob/main/CHANGELOG.md"
 
 [project.scripts]
 tributos-br = "tributos_br.__main__:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "tributos_br.__version__" }
 
 [tool.setuptools.packages.find]
 include = ["tributos_br*"]

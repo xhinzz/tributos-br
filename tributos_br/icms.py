@@ -213,17 +213,32 @@ def _substituicao(
 ) -> dict[str, Tributo] | None:
     dest = nota.destinatario
     revenda = dest.contribuinte_icms and not nota.consumidor_final
+    acordo = None
+    if nota.interestadual and item.cest:
+        # Conv. 142/18, cl. 2ª: na interestadual, ST só entre signatárias do acordo do segmento
+        acordo = tabelas.acordo_st(item.cest, nota.emitente.uf, dest.uf, nota.data)
+    extras: dict = {}
     if item.mva is not None:
         if not revenda:
             raise ValueError("MVA informada, mas a ST só cabe em venda para contribuinte que vai revender")
         mva, origem_mva = item.mva, "MVA informada"
-    elif revenda and item.cest:
+        if nota.interestadual and item.cest and acordo is None:
+            extras["conferir"] = f"sem acordo de ST entre {nota.emitente.uf} e {dest.uf} para o CEST {item.cest}"
+    elif revenda and item.cest and (acordo or not nota.interestadual):
+        if acordo and acordo.base != "mva":
+            raise ValueError(f"ST pelo {acordo.ato} tem base por preço (PMPF ou preço sugerido): não calculada aqui")
         achado = tabelas.mva(dest.uf, item.ncm, item.cest, nota.data)
+        if achado is None and acordo and acordo.mva is not None:
+            achado = acordo.mva, f"MVA do {acordo.ato}"
         if achado is None:
+            if acordo:
+                raise ValueError(f"ST devida pelo {acordo.ato} entre {nota.emitente.uf} e {dest.uf}: informe a MVA")
             return None
         mva, origem_mva = achado
     else:
         return None
+    if acordo:
+        origem_mva += f"; {acordo.fundamento}"
 
     aliquota_dest, fcp, _ = _interna(item, dest.uf, nota)
     mva_aplicada = mva
@@ -237,7 +252,7 @@ def _substituicao(
     # Conv. 142/18, cl. 11ª, III: IPI entra
     base_st = centavos((item.valor_operacao + valor_ipi) * (1 - pct(reducao)) * (1 + pct(mva_aplicada)))
     valor_st = max(centavos(base_st * pct(aliquota_dest)) - icms_proprio, ZERO)
-    extras: dict = {
+    extras |= {
         "mva_original": mva,
         "mva_aplicada": mva_aplicada,
         "icms_proprio_deduzido": icms_proprio,

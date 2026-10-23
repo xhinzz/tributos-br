@@ -107,14 +107,14 @@ def main():
         [Item("84713012", "1000")],
         data=HOJE,
     )
-    st = Nota(Participante("MG"), Participante("SP"), [Item("25221000", "1000", cest="1000100")], data=HOJE)
+    st = Nota(Participante("MG"), Participante("RJ"), [Item("38151210", "1000", cest="0100100")], data=HOJE)
     beneficio = Nota(
         Participante("SP"), Participante("BA"), [Item("84378010", "1000", beneficio="conv52_91_anexo_i")], data=HOJE
     )
     _salvar("consumidor_final.svg", _tabela("Indústria de SP vende notebook a consumidor final no RJ", consumidor))
     _salvar(
         "st_e_beneficio.svg",
-        _tabela("MG -> SP com ST: MVA de 49% ajustada para 59,9024%", st),
+        _tabela("Autopeça de MG para o RJ: Prot. 41/08, MVA de 71,78% ajustada para 88,958%", st),
         _tabela("SP -> BA com o Conv. 52/91: carga de 5,14%", beneficio),
     )
     _salvar("auditoria.svg", _auditoria())

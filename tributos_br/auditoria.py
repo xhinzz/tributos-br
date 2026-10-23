@@ -211,6 +211,33 @@ class _Auditoria:
 
     # --- regra: recálculo pela legislação ---
 
+    def st_interestadual(self, n, cest, icms):
+        """A MVA vem da nota; aqui só se a ST cabe, pelo acordo entre as UFs (Conv. 142/18, cl. 2ª)."""
+        revenda = self.destinatario.contribuinte_icms and not self.consumidor_final
+        if self.uf_emit == self.uf_dest or not revenda:
+            return
+        acordo = tabelas.acordo_st(cest, self.uf_emit, self.uf_dest, self.data)
+        tem_st = _dec(icms, "vICMSST") is not None
+        if acordo and not tem_st:
+            self.anotar(
+                "regra",
+                "vICMSST",
+                None,
+                None,
+                n,
+                f"ST devida pelo {acordo.ato} entre {self.uf_emit} e {self.uf_dest} e ausente na nota",
+            )
+        elif tem_st and not acordo:
+            self.anotar(
+                "aviso",
+                "vICMSST",
+                _dec(icms, "vICMSST"),
+                None,
+                n,
+                f"sem acordo de ST entre {self.uf_emit} e {self.uf_dest} para o CEST {cest}: "
+                "confira termo de acordo ou regime especial",
+            )
+
     def item(self, det) -> Item:
         n = int(det.get("nItem"))
         prod, imposto = _no(det, "prod"), _no(det, "imposto")
@@ -221,6 +248,7 @@ class _Auditoria:
                 tabelas.conferir_cest(cest, ncm)
             except ValueError as erro:
                 self.anotar("regra", "CEST", cest, None, n, str(erro))
+            self.st_interestadual(n, cest, icms)
         beneficio = _beneficio(icms, _txt(prod, "cBenef"))
         return Item(
             ncm=ncm,

@@ -187,12 +187,13 @@ def _difal(
     if not nota.metodo_difal and not dados.difal_conferido:
         extras["conferir"] = f"método do DIFAL de {dest} sem confirmação em fonte oficial da UF"
     modo = {"unica": "base única", "dupla": "base dupla", "por_dentro": "base por dentro"}[metodo]
+    origem_metodo = "informado na nota" if nota.metodo_difal else dados.difal_fonte
     resultado = {
         "DIFAL": Tributo(
             base_dest,
             aliquota_dest,
             valor,
-            fundamento=f"EC 87/2015, LC 190/2022 ({modo} em {dest}); {fundamento}",
+            fundamento=f"EC 87/2015, LC 190/2022; {modo} em {dest} ({origem_metodo}); {fundamento}",
             extras=extras,
         )
     }

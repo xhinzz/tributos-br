@@ -112,7 +112,7 @@ def test_aliquota_propria_do_produto_e_aviso_e_nao_contamina_o_resto():
     # alimento a 12% em SP: base do PIS 880, CBS sobre 880 − 14,52 − 66,88 = 798,60
     xml = nfe(
         item(
-            ncm="19052090",
+            ncm="19059090",
             icms={
                 "ICMS00": {"orig": 0, "CST": "00", "modBC": 3, "vBC": "1000.00", "pICMS": "12.00", "vICMS": "120.00"}
             },
@@ -277,3 +277,26 @@ def test_csosn_101_com_credito_zerado():
     (achado,) = r.achados
     assert (achado.campo, achado.nota, achado.esperado) == ("CSOSN", "101", "102")
     assert "art. 23, §4º" in achado.detalhe
+
+
+def test_aliquota_do_produto_na_tabela_nao_avisa_e_a_modal_avisa():
+    # pão de especiarias (1905.20) é 12% em SP (RICMS/SP, art. 54, XVI)
+    icms12 = {"ICMS00": {"orig": 0, "CST": "00", "modBC": 3, "vBC": "1000.00", "pICMS": "12.00", "vICMS": "120.00"}}
+    pis = {"PISAliq": {"CST": "01", "vBC": "880.00", "pPIS": "1.65", "vPIS": "14.52"}}
+    cofins = {"COFINSAliq": {"CST": "01", "vBC": "880.00", "pCOFINS": "7.60", "vCOFINS": "66.88"}}
+    ibscbs = {
+        "CST": "000",
+        "cClassTrib": "000001",
+        "gIBSCBS": {
+            "vBC": "798.60",
+            "gIBSUF": {"pIBSUF": "0.1000", "vIBSUF": "0.80"},
+            "gIBSMun": {"pIBSMun": "0.0000", "vIBSMun": "0.00"},
+            "vIBS": "0.80",
+            "gCBS": {"pCBS": "0.9000", "vCBS": "7.19"},
+        },
+    }
+    r = auditar(nfe(item(ncm="19052090", icms=icms12, pis=pis, cofins=cofins, ibscbs=ibscbs)))
+    assert r.ok and r.achados == [], r.como_dict()
+    r = auditar(nfe(item(ncm="19052090")))  # a 18% da modal
+    (aviso,) = [a for a in r.achados if a.campo == "alíquota interna"]
+    assert (aviso.nota, aviso.esperado) == (D(18), D(12)) and "RICMS/SP, art. 54, XVI" in aviso.detalhe

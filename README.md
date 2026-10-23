@@ -80,6 +80,7 @@ flowchart LR
 | **Simples Nacional** | CSOSN 101/102/201/202/400 e crédito do art. 23 da LC 123 só quando cabe | LC 123/2006 |
 | **PIS/COFINS** | Lucro Real (1,65% + 7,6%) e Presumido (0,65% + 3%), base sem o ICMS, monofásico, alíquota zero, isenção, suspensão, Simples (CST 49) | Leis 10.637, 10.833, 9.715 e 9.718; STF Tema 69 |
 | **IBS/CBS** | Alíquotas de teste de 2026, base do art. 12 da LC 214 (sem IPI, ICMS, FCP, DIFAL, PIS e COFINS), os 173 cClassTrib oficiais com redução (cesta básica a zero, 60% para alimentos, higiene, insumos agro), conferência do NCM nos anexos da LC 214, Simples fora em 2026 | IT 2025.002 (planilha do Portal da NF-e) e anexos da LC 214, gerados por script |
+| **Auditoria de NF-e** | Lê o XML (com ou sem `nfeProc` e namespace), confere a conta da própria nota e recalcula pela legislação: alíquota interestadual, DIFAL esquecido, CST/CSOSN, base do IBS/CBS, cClassTrib, CEST | NT 2016.002, NT 2025.002 e as mesmas tabelas do cálculo |
 | **CNPJ** | Validação do numérico e do **alfanumérico** (IN RFB 2.229/2024) e preenchimento da UF e do Simples pela BrasilAPI | — |
 
 Cada tabela traz a fonte de cada linha. Onde a pesquisa não achou confirmação oficial, a linha é marcada e o
@@ -196,6 +197,36 @@ Cada linha de `tributos_br/dados/ufs.csv` diz o método da UF e de onde ele saiu
 Os exemplos numéricos que as SEFAZ publicaram (CE, GO, MT, PR, AL e TO) estão em `tests/test_difal_oficial.py`
 e batem centavo a centavo. Nas cinco UFs sem fórmula oficial, o resultado traz `extras["conferir"]`; se a sua
 contabilidade segue outra orientação, informe `Nota(..., metodo_difal="dupla")`.
+
+### Auditoria de NF-e
+
+```python
+from tributos_br import auditar
+
+relatorio = auditar("35261011222333000181550010000000011000000010-nfe.xml")
+relatorio.ok  # False
+for a in relatorio.achados:
+    print(a.tipo, a.item, a.campo, a.nota, a.esperado, a.detalhe)
+```
+
+![Auditoria apontando alíquota interestadual errada e DIFAL esquecido](docs/img/auditoria.svg)
+
+Três tipos de achado:
+
+| Tipo | Quer dizer | Exemplo |
+|---|---|---|
+| `conta` | o XML não fecha com ele mesmo | `vCBS` ≠ `vBC × pCBS`; base do IBS/CBS fora da fórmula da UB16-10 |
+| `regra` | o recálculo pela legislação dá outro valor | 18% numa venda de SP para o RJ (é 12%); DIFAL devido e ausente; CSOSN 101 sem crédito |
+| `aviso` | pode estar certo, mas vale olhar | alíquota interna menor que a modal (produto com alíquota própria); ICMS dentro da base do PIS |
+
+Benefício, cBenef e MVA não têm como ser deduzidos: vêm da própria nota, e deles só se confere a conta. Uma
+divergência que só repete outra já apontada (PIS calculado sobre um ICMS errado) não é listada duas vezes. Notas
+de entrada, complementares e de devolução têm só a conta conferida. Pela linha de comando, o código de saída é 3
+quando há achado de `conta` ou `regra`, o que permite usar a auditoria num pipeline:
+
+```bash
+tributos-br nota.xml
+```
 
 ### CNPJ
 

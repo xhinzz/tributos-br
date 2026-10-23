@@ -1,0 +1,488 @@
+item,ncm,descricao
+1,73071920,Cabeça de poço para perfuração de poços de petróleo
+2,82073000,"Ferramentas de embutir, de estampar ou de puncionar"
+3,82071900,Brocas
+4.1,84021100,Caldeiras aquatubulares com produção de vapor superior a 45 toneladas por hora
+4.2,84021200,Caldeiras aquatubulares com produção de vapor não superior a 45 toneladas por hora
+4.3,84021900,"Outras caldeiras para produção de vapor, incluídas as caldeiras mistas"
+4.4,84022000,Caldeiras denominadas 'de água superaquecida'
+5.1,84041010,Aparelhos auxiliares para caldeiras das posições 84.02
+5.2,84042000,Condensadores para máquinas a vapor
+6,84051000,"Geradores de gás de ar (gás pobre) ou de gás de água, com ou sem depuradores; geradores de acetileno e geradores semelhantes de gás, operados a água, com ou sem depuradores"
+7.1,84061000,Turbinas para propulsão de embarcações
+7.2,84068100,Outras de potência superior a 40MW
+7.3,84068200,Outras de potência não superior a 40MW
+8.1,84101100,Turbinas e rodas hidráulicas de potência não superior a 1.000kW
+8.2,84101200,"Turbinas e rodas hidráulicas de potência superior a 1.000kW, mas não superior a 10.000kW"
+8.3,84101300,Turbinas e rodas hidráulicas de potência superior a 10.000kW
+8.4,84109000,Reguladores
+9,84128000,"Máquinas a vapor, de êmbolos, separadas das respectivas caldeiras"
+10.1,84137010,Eletrobombas submersíveis
+10.2,84137080,"Bombas centrífugas, de vazão inferior ou igual a 300 litros por minuto"
+10.3,84137090,Outras bombas centrífugas
+11.1,84148012,Compressores de ar de parafuso
+11.2,84148013,Compressores de ar de lóbulos paralelos (tipo 'Roots')
+11.3,84148019,Outros compressores inclusive de anel líquido
+11.4,84148031,"Compressores de gases, exceto ar, de pistão"
+11.5,84148032,"Compressores de gases exceto ar, de parafuso"
+11.6,84148033,"Compressores de gases exceto ar, centrífugos, de vazão máxima inferior a 22.000m3/h"
+11.7,84148038,Outros compressores centrífugos radiais
+11.8,84148039,"Outros compressores de gases, exceto ar, inclusive axiais"
+12.1,84161000,Queimadores de combustíveis líquidos
+12.2,84162010,"Outros queimadores, incluídos os mistos, de gases"
+12.3,84162090,"Outros queimadores, inclusive de carvão pulverizado"
+12.4,84163000,"Fornalhas automáticas, incluídas as antefornalhas, grelhas mecânicas, descarregadores mecânicos de cinzas e dispositivos semelhantes"
+12.5,84169000,Ventaneiras
+13.1,84171010,Fornos industriais para fusão de metais
+13.2,84171020,Fornos industriais para tratamento térmico de metais
+13.3,84171090,Outros fornos para tratamento térmico de minérios ou de metais
+13.4,84172000,"Fornos de padaria, pastelaria ou para a indústria de bolachas e biscoito"
+13.5,84178010,Fornos industriais para cerâmica
+13.6,8417,Fornos industriais para fusão de vidro
+13.6,8020,Fornos industriais para fusão de vidro
+13.7,84178090,Outros fornos industriais.
+14.1,84186910,Sorveteiras industriais
+14.2,84186999,"Máquinas de fabricar gelo em cubos ou escamas; instalações frigoríficas industriais formadas por elementos não reunidos em corpo único, nem montadas sobre base comum"
+14.3,84186920,Resfriadores de leite
+15.1,84193200,"Secadores para madeiras, pastas de papel, papéis ou cartões"
+15.2,84193900,Outros secadores exceto para produtos agrícolas
+15.3,84194010,Aparelhos de destilação de água
+15.4,84194020,Aparelhos de destilação ou retificação de álcoois e outros fluídos voláteis ou de hidrocarbonetos
+15.5,84194090,Outros aparelhos de destilação ou de retificação
+15.6,84195010,Trocadores de calor de placas
+15.7,84195021,Trocadores de calor tubulares metálicos
+15.8,84195022,Trocadores de calor tubulares de grafite
+15.9,84195029,Outros trocadores de calor tubulares
+15.10,84195090,Outros trocadores de calor
+15.11,84196000,Aparelhos e dispositivos para liquefação do ar ou de outros gases
+15.12,84198110,Autoclaves
+15.13,84198190,Outros aparelhos para preparação de bebidas quentes ou para cozimento ou aquecimento de alimentos
+15.14,84198911,"Esterilizadores de alimentos, mediante Ultra Alta Temperatura (UHT - 'Ultra High Temperature') por injeção direta de vapor, com capacidade superior ou igual a 6.500l/h"
+15.15,84198919,Outros esterilizadores
+15.16,84198920,Estufas
+15.17,84198930,Torrefadores
+15.18,84198940,Evaporadores
+15.19,84198999,Outros aparelhos e dispositivos para tratamento de matérias por meio de mudança de temperatura
+16.1,84201010,Calandras e laminadores para papel ou cartão
+16.2,84201090,Outras calandras e laminadores
+16.3,84209100,Cilindros
+17.1,84211110,Desnatadeiras com capacidade de processamento de leite superior ou igual a 30.000 litros por hora
+17.2,84211190,Outras desnatadeiras
+17.3,84211290,"Secadores de roupa para lavanderia, exceto as do código 8421.12.10"
+17.4,84211910,Centrifugadores para laboratórios
+17.5,84211990,Centrifugadores para indústria açucareira; extratores centrífugos de mel
+17.6,84213990,Aparelhos para filtrar ou depurar gases
+18.1,84222000,Máquinas e aparelhos para limpar ou secar garrafas e outros recipientes
+18.2,84223010,"Máquinas e aparelhos para encher, fechar, capsular ou rotular garrafas"
+18.3,84223021,Máquinas e aparelhos para encher caixas ou sacos com pó ou grãos
+18.4,84223022,"Máquinas e aparelhos para encher e fechar embalagens confeccionadas com papel ou cartão dos códigos 4811.51.22 ou 4811.59.23, mesmo com dispositivo de rotulagem"
+18.5,84223023,"Máquinas e aparelhos para encher e fechar recipientes tubulares flexíveis (bisnagas), com capacidade superior ou igual a 100 unidades por minuto"
+18.6,84223029,"Máquinas e aparelhos para encher e fechar ampolas de vidro; outras máquinas e aparelhos para encher, fechar, arrolhar ou rotular caixas, latas, sacos ou outros recipientes, capsular vasos, tubos e recipientes semelhantes"
+18.7,84224010,"Máquinas e aparelhos para empacotar ou embalar mercadorias horizontais, próprias para empacotamento de massas alimentícias longas (comprimento superior a 200mm) em pacotes tipo almofadas ('pillow pack'), com capacidade de produção superior a 100 pacotes por minuto e controlador lógico programável (CLP)"
+18.8,84224020,"Máquinas e aparelhos para empacotar ou embalar mercadorias automática, para embalar tubos ou barras de metal, em atados de peso inferior ou igual a 2.000kg e comprimento inferior ou igual a 12m"
+18.9,84224030,"Máquinas e aparelhos para empacotar ou embalar mercadorias de empacotar embalagens confeccionadas com papel ou cartão dos subitens 4811.51.22 ou 4811.59.23 em caixas ou bandejas de papel ou cartão dobráveis, com capacidade superior ou igual a 5.000 embalagens por hora"
+18.10,84224090,Outras máquinas e aparelhos para empacotar ou embalar mercadorias
+19.1,84232000,Básculas de pesagem contínua em transportadores
+19.2,84233011,"Balanças ou básculas dosadoras com aparelhos periféricos, que constituam unidade funcional"
+19.3,84233019,Outros dosadores
+19.4,84233090,Básculas de pesagem constante de grão ou líquido; outros aparelhos de pesagem constante e ensacadores
+19.5,84238110,"Aparelhos e instrumentos de pesagem de capacidade não superior a 30kg de mesa, com dipositivo registrador ou impressor de etiquetas"
+19.6,84238190,Aparelhos verificadores de excesso ou deficiência de peso em relação a um padrão; outros aparelhos e instrumentos de pesagem de capacidade não superior a 30kg
+19.7,84238190,"Aparelhos para controlar a gramatura de tecido, papel ou qualquer outro material, durante a fabricação"
+19.7,84238200,"Aparelhos para controlar a gramatura de tecido, papel ou qualquer outro material, durante a fabricação"
+19.7,84238900,"Aparelhos para controlar a gramatura de tecido, papel ou qualquer outro material, durante a fabricação"
+19.8,84238200,"Balança de capacidade superior a 30kg, mas não superior a 5.000kg"
+20.1,84242000,Pistolas aerográficas e aparelhos semelhantes
+20.2,84243010,Máquinas e aparelhos de desobstrução de tubulação por jato de água
+20.3,84243020,Máquinas e aparelhos de jato de areia
+20.4,84243030,Perfuradoras por jato de água com pressão de trabalho máxima superior ou igual a 10MPa
+20.5,84243090,"Outras máquinas e aparelhos de jato de areia, de jato de vapor ou qualquer outro abrasivo e aparelhos de jato semelhantes"
+20.6,84248990,Pulverizadores (“Sprinklers”) para equipamentos automáticos de combate a incêndio; outros aparelhos de pulverização
+21.1,84251100,"Talhas, cadernais e moitões de motor elétrico"
+21.2,84251910,"Talhas, cadernais e moitões, manuais"
+21.3,84251990,"Outras talhas, cadernais e moitões"
+21.4,84253110,Guinchos e cabrestantes de motor elétrico com capacidade inferior ou igual a 100 toneladas
+21.5,8425,Outros guinchos e cabrestantes de motor elétrico
+21.5,3190,Outros guinchos e cabrestantes de motor elétrico
+21.6,84253910,Outros guinchos e cabrestantes com capacidade inferior ou igual a 100 toneladas
+21.7,84253990,Outros guinchos e cabrestantes
+22.1,84261100,"Pontes e vigas, rolantes, de suportes fixos"
+22.2,84262000,Guindastes de torre
+22.3,84263000,Guindastes de pórtico
+22.4,84269900,Outros guindastes
+23,84279000,"Empilhadeiras mecânicas de volumes, de ação descontínua"
+24.1,84281000,Elevadores de carga de uso industrial e monta-cargas
+24.2,84282010,"Transportadores tubulares (transvasadores) móveis, acionados com motor de potência superior a 90kW (120HP)"
+24.3,84282090,"Outros aparelhos elevadores ou transportadores, pneumáticos"
+24.4,84283100,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias, especialmente concebidos para uso subterrâneo"
+24.5,84283200,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias de caçamba"
+24.6,84283300,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias de tira ou correia"
+24.7,84283910,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias de correntes"
+24.8,84283920,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias de rolos motores"
+24.9,84283930,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias de pinças laterais, do tipo dos utilizados para o transporte de jornais"
+24.10,84283990,"Outros aparelhos elevadores ou transportadores, de ação contínua, para mercadorias"
+25.1,84342010,Aparelhos homogeneizadores de leite
+25.2,84342090,Outras máquinas para tratamento de leite
+26,84351000,"Máquinas e aparelhos para prensar, esmagar e máquinas e aparelhos semelhantes, para fabricação de vinho, sidra, sucos de frutas ou bebidas semelhantes"
+27.1,84371000,"Máquinas para limpeza, seleção ou peneiração de grãos ou de produtos hortícolas secos"
+27.2,84378010,"Máquinas para trituração, esmagamento ou moagem de grãos"
+27.3,84378090,Máquinas para seleção e separação das farinhas e de outros produtos da moagem dos grãos
+28.1,84381000,"Máquinas e aparelhos para as indústrias de panificação, pastelaria, bolachas e biscoitos e de massas alimentícias"
+28.2,84382011,"Para fabricar bombons de chocolate por moldagem, de capacidade de produção superior ou igual a 150kg/h"
+28.3,84382019,Outras máquinas e aparelhos para as indústrias de confeitaria
+28.4,84382090,Outras máquinas e aparelhos para as indústrias de cacau e de chocolate
+28.5,84383000,Máquinas e aparelhos para a indústria de açúcar para extração de caldo de cana-de-açúcar; para o tratamento dos caldos ou sucos açucarados e para a refinação de açúcar
+28.6,84384000,Máquinas e aparelhos para a indústria cervejeira
+28.7,84385000,Máquinas e aparelhos para a preparação de carnes
+28.8,84386000,Máquinas e aparelhos para preparação de frutas ou de produtos hortícolas
+28.9,84388020,"Máquinas e aparelhos para a preparação de peixes, moluscos e crustáceos"
+28.9,84388090,"Máquinas e aparelhos para a preparação de peixes, moluscos e crustáceos"
+29.1,84391010,Máquinas para a fabricação de pasta de matérias fibrosas celulósicas para tratamento preliminar das matérias primas
+29.2,84391020,Classificadoras e classificadoras-depuradoras de pasta
+29.3,84391030,Refinadoras
+29.4,84391090,Outras máquinas e aparelhos para fabricação de pasta de matérias fibrosas celulósicas
+29.5,84392000,Máquinas e aparelhos para fabricação de papel ou cartão
+29.6,84393010,Bobinadoras-esticadoras
+29.7,84393020,Máquinas para impregnar
+29.8,84393030,Máquinas para ondular papel ou cartão
+29.9,84393090,Outras máquinas e aparelhos para acabamento de papel ou cartão
+29.10,84401011,Máquinas de costurar (coser) cadernos
+29.10,84401019,Máquinas de costurar (coser) cadernos
+29.11,84401020,"Máquinas para fabricar capas de papelão, com dispositivo de colagem e capacidade de produção superior a 60 unidades por minuto"
+29.12,84401090,Outras máquinas e aparelhos para brochura ou encadernação
+30.1,84411010,Cortadeiras bobinadoras com velocidade de bobinado superior a 2.000m/min
+30.2,84411090,Outras cortadeiras
+30.3,84412000,Máquinas para fabricação de sacos de quaisquer dimensões ou de envelopes
+30.4,84413010,"Máquinas de dobrar e colar, para fabricação de caixas"
+30.5,84413090,"Outras máquinas para fabricação de caixas, tubos, tambores ou recipientes semelhantes por qualquer processo, exceto moldagem"
+30.6,84414000,"Máquinas de moldar artigos de pasta de papel, papel ou de cartão"
+30.7,84418000,"Máquinas de perfurar, picotar e serrilhar linhas de corte; máquinas especiais de grampear caixas e artefatos semelhantes"
+31.1,84423010,Máquinas de compor por processo fotográfico
+31.2,84423020,"Máquinas e aparelhos de compor caracteres tipográficos por outros processos, mesmo com dispositivo de fundir"
+32.1,84431110,"Máquinas e aparelhos de impressão, por ofsete, alimentados por bobinas, para impressão multicolor de jornais, de largura superior ou igual a 900mm, com unidades de impressão em configuração torre e dispositivos automáticos de emendar bobinas"
+32.2,84431190,"Outras máquinas e aparelhos de impressão, por ofsete, alimentados por bobinas"
+32.3,84431200,"Máquinas e aparelhos de impressão, por ofsete, dos tipos utilizados em escritórios, alimentados por folhas de formato não superior a 22cm x 36cm, quando não dobradas"
+32.4,84431310,"Máquinas e aparelhos para impressão multicolor de recipientes de matérias plásticas, cilíndricos, cônicos ou de faces planas"
+32.5,84431321,"Outras máquinas e aparelhos de impressão, por ofsete, alimentados por folhas de formato inferior ou igual a 37,5cm x 51cm, com velocidade de impressão superior ou igual a 12.000 folhas por hora"
+32.6,84431329,"Outros alimentados por folhas de formato inferior ou igual a 37,5cm x 51cm"
+32.7,84431390,"Outras máquinas e aparelhos de impressão, por ofsete"
+32.8,84431400,"Máquinas e aparelhos de impressão, tipográficos, alimentados por bobinas, exceto máquinas e aparelhos flexográficos"
+32.9,84431500,"Máquinas e aparelhos de impressão, tipográficos, não alimentados por bobinas, exceto máquinas e aparelhos flexográficos"
+32.10,84431600,"Máquinas e aparelhos de impressão, flexográficos"
+32.11,84431710,Máquinas rotativas para heliogravura
+32.12,84431790,"Outras máquinas e aparelhos de impressão, heliográficos"
+32.13,84431990,"Máquinas rotativas para rotogravura; outras máquinas e aparelhos de impressão por meio de blocos, cilindros e outros elementos de impressão da posição 84.42"
+32.14,84439191,Dobradoras
+32.15,84439192,Numeradores automáticos
+32.16,84439199,"Outros acessórios de máquinas e aparelhos de impressão que operem por meio de blocos, cilindros e outros elementos de impressão da posição 84.42"
+32.17,84433910,"Máquinas de impressão por jato de tinta, de uso industrial"
+33.1,84440010,Máquinas e aparelhos para extrudar
+33.2,84440020,Máquinas e aparelhos para corte ou ruptura de fibras
+33.3,84440090,"Outras máquinas para extrudar, estirar, texturizar ou cortar matérias têxteis sintéticas ou artificiais"
+34.1,84451110,Cardas para lã
+34.2,84451120,Cardas para fibras do Capítulo 53
+34.3,84451190,Outras cardas
+34.4,84451200,Penteadoras
+34.5,84451300,Bancas de estiramento (bancas de fusos)
+34.6,84451910,Máquinas para a preparação da seda
+34.7,84451921,"Máquinas para recuperação de cordas, fios, trapos ou qualquer outro desperdício, transformando-os em fibras adequadas para cardagem"
+34.8,84451922,Descaroçadeiras e deslintadeiras de algodão
+34.9,84451923,"Máquinas para desengordurar, lavar, alvejar ou tingir fibras têxteis em massa ou rama"
+34.10,84451924,Abridoras de fibras de lã
+34.11,84451925,Abridoras de fibras do Capítulo 53
+34.12,84451926,Máquinas de carbonizar a lã
+34.13,84451927,Máquinas para estirar a lã
+34.14,84451929,Batedores e abridores-batedores; abridores de fardos e carregadores automáticos; outras máquinas para a preparação de outras matérias têxteis
+34.15,84452000,Máquinas para fiação de matérias têxteis
+34.16,84453010,Retorcedeiras
+34.17,84453090,"Máquinas para fabricação de barbantes, cordões e semelhantes; outras máquinas para dobragem ou torção, de matérias têxteis"
+34.18,84454011,Bobinadeiras automáticas de trama
+34.19,84454012,Bobinadeiras automáticas para fios elastanos
+34.20,84454018,"Outras bobinadeiras automáticas, com atador automático"
+34.21,84454019,Outras bobinadeiras automáticas
+34.22,84454021,Bobinadoras não automáticas com velocidade de bobinado superior ou igual a 4.000m/min
+34.23,84454029,Outras bobinadeiras não automáticas
+34.24,84454031,Meadeiras com controle de comprimento ou peso e atador automático
+34.25,84454039,Outras meadeiras
+34.26,84454040,Noveleiras automáticas
+34.27,84454090,"Outras máquinas de bobinar (incluídas as bobinadeiras de trama) ou de dobar, matérias têxteis"
+34.28,84459010,Urdideiras
+34.29,84459020,Passadeiras para liço e pente
+34.30,84459030,Máquinas automáticas para atar urdiduras
+34.31,84459040,Máquinas automáticas para colocar lamela
+34.32,84459090,Engomadeiras de fio; outras máquinas para preparação de matérias têxteis
+35.1,84461010,"Teares para tecidos de largura não superior a 30cm, com mecanismo ‘Jacquard’"
+35.2,84461090,Outros teares para tecidos de largura não superior a 30cm
+35.3,84462100,"Teares para tecidos de largura superior a 30cm, de lançadeiras, a motor"
+35.4,84462900,"Outros teares para tecidos de largura superior a 30cm, de lançadeiras"
+35.5,84463010,"Teares para tecidos de largura superior a 30cm, sem lançadeiras, a jato de ar"
+35.6,84463020,"Teares para tecidos de largura superior a 30cm, sem lançadeiras, a jato de água"
+35.7,84463030,"Teares para tecidos de largura superior a 30cm, sem lançadeiras, de projétil"
+35.8,84463040,"Teares para tecidos de largura superior a 30cm, sem lançadeiras, de pinças"
+35.9,84463090,"Outros teares para tecidos de largura superior a 30cm, sem lançadeiras"
+36.1,84471100,Teares circulares para malhas com cilindro de diâmetro não superior a 165mm
+36.2,84471200,Teares circulares para malhas com cilindro de diâmetro superior a 165mm
+36.3,84472021,"Teares retilíneos para malhas; máquinas de costura por entrelaçamento ('couture-tricotage'), motorizados, para fabricação de malhas de urdidura"
+36.4,84472029,"Outros teares motorizados; máquinas tipo “Cotton” e semelhantes, para fabricação de meias, funcionando com agulha de flape; máquinas para fabricação de “Jersey” e semelhantes, funcionando com agulha de flape; máquinas dos tipos “Raschell”, milanês ou outro, para fabricação de tecido de malha indesmalhável"
+36.5,84472030,Máquinas de costura por entrelaçamento (“couture tricotage”)
+36.6,84479010,"Máquinas retilíneas para fabricação de cortinados, “filet”, filó e rede"
+36.7,84479020,Máquinas automáticas para bordado
+36.8,84479090,Outros teares para fabricar malhas
+37.1,84481110,Ratleras (maquinetas) para liços
+37.2,84481120,Mecanismos “Jacquard”
+37.3,84481190,"Outras ratieras e mecanismos 'Jacquard'; redutores, perfuradores e copiadores de cartões; máquinas para enlaçar cartões após perfuração"
+37.4,84481900,"Outras máquinas e aparelhos auxiliares para as máquinas das posições 84.44, 84.45, 84.46 ou 84.47; mecanismos troca-lançadeiras; mecanismos troca-espulas; máquinas automáticas de atar fios"
+38.1,84490010,Máquinas e aparelhos para fabricação ou acabamento de feltro
+38.2,84490020,Máquinas e aparelhos para fabricação de falsos tecidos
+38.3,84490080,Outras máquinas e aparelhos para fabricação de chapéus de feltro
+39.1,84501100,"Máquinas de capacidade não superior a 10kg, em peso de roupa seca, inteiramente automáticas"
+39.2,84501200,"Máquinas de capacidade não superior a 10kg, em peso de roupa seca, com secador centrífugo incorporado"
+39.3,84501900,"Outras máquinas de capacidade não superior a 10kg, em peso de roupa seca"
+39.4,84502010,"Máquinas de capacidade superior a 10kg, em peso de roupa seca, túneis contínuos"
+39.5,84502090,"Outras máquinas de lavar de capacidade superior a 20 kg, em peso de roupa seca de uso não doméstico"
+40.1,84511000,Máquina para lavar a seco; máquinas industriais para lavar a seco
+40.2,84512100,"Máquina industrial de secar de capacidade não superior a 10kg, em peso de roupa seca"
+40.3,84512910,"Outras máquinas de secar que funcionem por meio de ondas eletromagnéticas (microondas), cuja produção seja superior ou igual a 120kg/h de produto seco"
+40.4,84512990,"Outras máquinas de secar, com capacidade superior a 15 Kg, de uso não doméstico"
+40.5,84513010,"Máquinas e prensas para passar, incluídas as prensas fixadoras, automáticas"
+40.6,84513091,Prensas para passar de peso inferior ou igual a 14kg
+40.7,84513099,Outras máquinas e prensas para passar
+40.8,84514010,"Máquinas para lavar, com capacidade superior a 15 kg, de uso não doméstico"
+40.9,84514021,"Máquina para tingir tecidos em rolos; para tingir por pressão estática, com molinete (rotor de pás), jato de água (jet) ou combinada"
+40.10,84514029,Outras máquinas para tingir ou branquear fios ou tecidos
+40.11,84514090,"Outras máquinas lavar, branquear ou tingir"
+40.12,84515010,Máquinas para inspecionar tecidos
+40.13,84515020,"Máquinas automáticas, para enfestar ou cortar"
+40.14,84515090,"Outras máquinas para enrolar, desenrolar, dobrar, cortar ou dentear tecidos"
+40.15,84518000,Máquinas de mercerizar fios; máquinas de mercerizar tecidos; máquinas de carbonizar ou chamuscar fio ou tecido; alargadoras ou ramas; tosadouras; outras máquinas e aparelhos
+41.1,84522110,Unidades automáticas para costurar couros ou peles
+41.2,84522120,Unidades automáticas para costurar tecidos
+41.3,84522190,Outras máquinas de costura
+41.4,84522910,Outras máquinas para costurar couro ou pele e seus artigos
+41.5,84522921,Remalhadeiras
+41.6,84522922,Máquinas para casear
+41.7,84522923,Máquinas tipo zigue-zague para inserir elástico
+41.8,84522929,Outras máquinas de costurar tecidos
+41.9,84522924,Máquinas de costura reta
+41.10,84522925,Galoneiras
+42.1,84531010,"Máquinas para dividir couros com largura útil inferior ou igual a 3.000mm, com lâmina sem fim, com controle eletrônico programável"
+42.2,84531090,"Máquinas e aparelhos para preparar, curtir ou trabalhar couros ou peles; máquinas e aparelhos para amaciar, bufiar, escovar, granear, lixar, lustrar, ou rebaixar couro ou pele; máquinas e aparelhos para descarnar, dividir, estirar, pelar ou purgar couro ou pele; máquinas e aparelhos para cilindrar, enxugar ou prensar couro ou pele"
+42.3,84532000,Máquinas e aparelhos para fabricar ou consertar calçados
+42.4,84538000,"Outras máquinas e aparelhos para preparar, curtir ou trabalhar couros ou peles, ou para fabricar ou consertar calçado e outras obras de couro ou de pele, exceto máquinas de costura"
+43.1,84541000,Conversores
+43.2,84542010,Lingoteiras
+43.3,84542090,Colheres de fundição
+43.4,84543010,Máquinas de vazar sob pressão
+43.5,84543020,Máquinas de moldar por centrifugação
+43.6,84543090,Outras máquinas de vazar (moldar)
+43.7,84549010,Agitador eletrônico de aço líquido (stirring)
+43.8,84549090,Impulsionador de tarugos com rolos acionados
+44.1,84551000,Laminadores de tubos
+44.2,84552110,Laminadores a quente e laminadores a quente e a frio de cilindros lisos
+44.3,84552190,"Outros laminadores a quente e laminadores a quente e a frio, para chapas, para fios"
+44.4,84552210,Laminadores a frio de cilindros lisos
+44.5,84552290,"Outros laminadores a frio, para chapa, para fios"
+44.6,84553010,"Cilindros de laminadores fundidos, de aço ou ferro fundido nodular"
+44.7,84553020,"Cilindros de laminadores forjados, de aço de corte rápido, com um teor, em peso, de carbono superior ou igual a 0,80% e inferior ou igual a 0,90%, de cromo superior ou igual a 3,50% e inferior ou igual a 4%, de vanádio superior ou igual a 1,60% e inferior ou igual a 2,30%, de molibdênio inferior ou igual a 8,50% e de tungstênio inferior ou igual a 7%"
+44.8,84553090,Outros cilindros laminadores
+44.9,84559000,"Outras partes de laminadores de metais e seus cilindros; guias roletadas para laminação de redondos, perfis e “multi slit”; tesoura corte frio com embreagem ou acionamento por corrente contínua para corte de laminados; bobinadeira “laving head” para bitolas de diâmetro 5,50 a 25 mm; enroladeira/bobinadeira “recoiller” para bitolas de diâmetro 20 a 50mm"
+45.1,84563011,Máquinas-ferramentas de comando numérico para texturizar superfícies cilíndricas
+45.2,84563019,Outras máquinas-ferramentas de comando numérico
+45.3,84563090,Outras máquinas-ferramentas operando por eletroerosão
+46.1,84571000,Centros de usinagem
+46.2,84572010,"Máquinas de sistema monostático ('single station'), de comando numérico"
+46.3,84572090,Outras máquinas de sistema monostático ('single station')
+46.4,84573010,"Máquinas de estações múltiplas, de comando numérico"
+46.5,84573090,Outras máquinas de estações múltiplas
+47.1,84581110,"Tornos horizontais, de comando numérico, revólver"
+47.2,84581191,"Outros tornos horizontais, de comando numérico, de 6 ou mais fusos porta-peças"
+47.3,84581199,"Outros tornos horizontais, de comando numérico"
+47.4,84581910,Outros tornos horizontais de revólver
+47.5,84581990,Outros tornos horizontais
+47.6,84589100,Outros tornos de comando numérico
+47.7,84589900,Outros tornos
+48.1,84591000,Unidades com cabeça deslizante
+48.2,84592110,"Outras máquinas para furar de comando numérico, radiais"
+48.3,84592191,Outras máquinas para furar de comando numérico de mais de um cabeçote mono ou multifuso
+48.4,84592199,Outras máquinas para furar de comando numérico
+48.5,84592900,Outras máquinas de furar
+48.6,84593100,"Outras mandriladoras-fresadoras, de comando numérico"
+48.7,84593900,Outras mandriladoras-fresadoras
+48.8,84594000,Outras máquinas para mandrilar
+48.9,84595100,"Máquinas para fresar, de console, de comando numérico"
+48.10,84595900,"Outras máquinas para fresar, de console"
+48.11,84596100,"Outras máquinas para fresar, de comando numérico"
+48.12,84596900,Outras máquinas para fresar
+48.13,84597000,Outras máquinas para roscar interior ou exteriormente
+49.1,84601100,"Máquinas para retificar superfícies planas, cujo posicionamento sobre qualquer dos eixos pode ser estabelecido com precisão de pelo menos 0,01mm, de comando numérico"
+49.2,84601900,"Outras máquinas para retificar superfícies planas, cujo posicionamento sobre qualquer dos eixos pode ser estabelecido com precisão de pelo menos 0,01mm"
+49.3,84602100,"Outras máquinas para retificar, cujo posicionamento sobre qualquer dos eixos pode ser estabelecido com precisão de pelo menos 0,01mm, de comando numérico"
+49.4,84602900,"Outras máquinas para retificar, cujo posicionamento sobre qualquer dos eixos pode ser estabelecido com precisão de pelo menos 0,01mm"
+49.5,84603100,"Máquinas para afiar, de comando numérico"
+49.6,84603900,Outras máquinas para afiar
+49.7,84604011,"Brunidoras de comando numérico, para cilindros de diâmetro inferior ou igual a 312mm"
+49.8,84604019,Outras brunidoras de comando numérico
+49.9,84604091,Brunidoras para cilindros de diâmetro inferior ou igual a 312mm
+49.10,84604099,Outras brunidoras
+49.11,84609011,"Máquinas-ferramentas, de comando numérico, de polir, com cinco ou mais cabeças e porta -peças rotativo"
+49.12,84609012,"Máquinas-ferramentas, de comando numérico, de esmerilhar, com duas ou mais cabeças e porta-peças rotativo"
+49.13,84609019,"Outras máquinas-ferramentas para rebarbar, afiar, amolar, retificar, brunir, polir ou realizar outras operações de acabamento em metais ou ceramais, de comando numérico"
+49.14,84609090,"Outras máquinas-ferramentas para rebarbar, afiar, amolar, retificar, brunir, polir ou realizar outras operações de acabamento em metais ou ceramais"
+50.1,84612010,Plainas-limadoras e máquinas para escatelar
+50.2,84612090,Outras plainas-limadoras e máquinas para escatelar
+50.3,84613010,"Máquinas para brochar, de comando numérico"
+50.4,84613090,Mandriladeiras
+50.5,84614010,"Máquinas para cortar ou acabar engrenagens, de comando numérico"
+50.6,84614091,Redondeadoras de dentes
+50.7,84614099,Outras máquinas para cortar ou acabar engrenagens
+50.8,84615010,"Máquinas para serrar ou seccionar, de fitas sem fim"
+50.9,84615020,"Máquinas para serrar ou seccionar, circulares"
+50.10,84615090,"Outras máquinas para serrar ou seccionar; serra de fita, alternativa; cortadeiras"
+50.11,84619010,"Outras máquinas-ferramentas para aplainar, de comando numérico"
+50.12,84619090,Outras máquinas-ferramentas para aplainar; desbastadeiras; filetadeiras
+51.1,84621011,Máquinas para estampar
+51.2,84621019,"Outras máquinas (incluídas as prensas) para forjar ou estampar, martelos, martelos-pilões e martinetes, de comando numérico"
+51.3,84621090,"Outras máquinas (incluídas as prensas) para forjar ou estampar, martelos, martelos-pilões e martinetes"
+51.4,84622100,"Máquinas (incluídas as prensas) para enrolar, arquear, dobrar, endireitar ou aplanar, de comando numérico"
+51.5,84622900,"Outras máquinas (incluídas as prensas) para enrolar, arquear, dobrar, endireitar ou aplanar"
+51.6,84623100,"Máquinas (incluídas as prensas) para cisalhar, exceto as máquinas combinadas de puncionar e cisalhar, de comando numérico"
+51.7,84623910,"Máquinas (incluídas as prensas) para cisalhar, exceto as máquinas combinadas de puncionar e cisalhar, tipo guilhotina"
+51.8,84623990,"Outras máquinas (incluídas as prensas) para cisalhar, exceto as máquinas combinadas de puncionar e cisalhar"
+51.9,84624100,"Máquinas (incluídas as prensas) para puncionar ou para chanfrar, incluídas as máquinas combinadas de puncionar e cisalhar, de comando numérico"
+51.10,84624900,"Outras máquinas (incluídas as prensas) para puncionar ou para chanfrar, incluídas as máquinas combinadas de puncionar e cisalhar"
+51.11,84629111,"Prensas hidráulicas de capacidade igual ou inferior a 35.000kN, para moldagem de pós metálicos por sinterização"
+51.12,84629191,"Outras prensas hidráulicas, para moldagem de pós metálicos por sinterização"
+51.13,84629119,Outras prensas hidráulicas de capacidade igual ou inferior a 35.000kN
+51.14,84629199,Outras prensas hidráulicas
+51.15,84629910,Prensas para moldagem de pós metálicos por sinterização
+51.16,84629920,Prensas para extrusão
+51.17,84629990,Outras prensas
+52.1,84631010,Bancas para estirar tubos
+52.2,84631090,"Outras bancas para estirar barras, perfis, fios ou semelhantes"
+52.3,84632010,"Máquinas para fazer roscas internas ou externas por laminagem, de comando hidráulico"
+52.4,84632091,"Máquinas para fazer roscas internas ou externas por laminagem de pente plano, com capacidade de produção superior ou igual a 160 unidades por minuto, de diâmetro de rosca compreendido entre 3mm e 10mm"
+52.5,84632099,Outras máquinas para fazer roscas internas ou externas por laminagem
+52.6,84633000,Máquinas para trabalhar arames e fios de metal
+52.7,84639010,"Outras máquinas-ferramentas para trabalhar metais ou ceramais, de comando numérico"
+52.8,84639090,Outras máquinas-ferramentas para trabalhar metais ou ceramais
+53.1,84641000,Máquinas para serrar
+53.2,84642010,"Máquinas para esmerilar ou polir, para vidro"
+53.3,84642021,"Máquinas de polir placas, para pavimentação ou revestimento, com oito ou mais cabeças, para cerâmica"
+53.4,84642029,"Outras máquinas para esmerilar ou polir, para cerâmica"
+53.5,84642090,Outras máquinas para esmerilar ou polir
+53.6,84649011,"Máquinas-ferramentas para o trabalho a frio do vidro, de comando numérico, para retificar, fresar e perfurar"
+53.7,84649019,Outras máquinas-ferramentas para o trabalho a frio do vidro
+53.8,84649090,"Outras máquinas-ferramentas para trabalhar pedra, produtos cerâmicos, concreto, fibrocimento ou matérias minerais semelhantes"
+54.1,84651000,Máquinas-ferramentas capazes de efetuar diferentes tipos de operações sem troca de ferramentas; plaina combinada (desengrossadeira-desempenadeira)
+54.2,84659110,Máquinas de serrar de fita sem fim
+54.3,84659120,Máquinas de serrar circulares
+54.4,84659190,Outras máquinas de serrar; serra de desdobro e serras de folhas múltiplas
+54.5,84659211,Fresadoras
+54.6,84659219,"Outras máquinas para desbastar ou aplainar; máquinas para fresar ou moldurar, de comando numérico"
+54.7,84659290,"Outras máquinas para desbastar ou aplainar; máquinas para fresar ou moldurar; respigadeiras, molduradeiras e talhadeiras; plaina de 3 ou 4 faces; tupias"
+54.8,84659310,Lixadeiras
+54.9,84659390,"Outras máquinas para esmerilar, lixar ou polir"
+54.10,84659400,"Máquinas para arquear ou para reunir; prensas para produção de madeira compensada ou placada, com placas aquecidas"
+54.11,84659511,"Máquinas para furar, de comando numérico"
+54.12,84659512,"Máquinas para escatelar, de comando numérico"
+54.13,84659591,Outras máquinas para furar
+54.14,84659592,Outras máquinas para escatelar
+54.15,84659600,"Máquinas para fender, seccionar ou desenrolar"
+54.16,84659900,Outras máquinas para descascar madeira; máquinas para fabricação de lã ou palha de madeira; torno tipicamente copiador; qualquer outro torno; máquinas para copiar ou reproduzir; moinhos para fabricação de farinha de madeira; máquinas para fabricação de botões de madeira
+55.1,84662010,"Porta-peças, para tornos"
+55.2,84663000,"Dispositivos divisores e outros dispositivos especiais, para máquinas-ferramentas"
+55.3,84669100,"Outros acessórios, partes para máquinas da posição 84.64"
+55.4,84669200,Outros acessórios e partes Para máquinas da posição 84.65
+55.5,84669319,Outros acessórios e partes para máquinas para usinagem de metais ou carbonetos metálicos da posição 84.56
+55.6,84669320,Outros acessórios e partes para máquinas da posição 84.57
+55.7,84669330,Outros acessórios e partes para máquinas da posição 84.58
+55.8,84669340,Outros acessórios e partes para máquinas da posição 84.59
+55.9,84669350,Outros acessórios e partes para máquinas da posição 84.60
+55.10,84669360,Outros acessórios e partes para máquinas da posição 84.61
+55.11,84669410,Outros acessórios e partes para máquinas da posição 8462.10
+55.12,84669420,Outros acessórios e partes para das subposições 8462.21 ou 8462.29
+55.13,84669430,Outros acessórios e partes para prensas para extrusão
+55.14,84669490,"Outros acessórios e partes para máquinas: de estirar fios ou tubos; de cisalhar (incluídas as prensas), exceto as máquinas combinadas de puncionar e cisalhar; de puncionar ou chanfrar, incluídas as máquinas combinadas de puncionar e cisalhar; de fazer roscas internas ou externas por rolagem ou laminagem; de trabalhar arames e fios de metal; de trefiladeiras manuais; estiradoras ou trefiladoras para fios; extrusoras e para outras máquinas da posição 84.63, não especificadas"
+56.1,84671110,Furadeiras
+56.2,84671190,Outras ferramentas pneumáticas rotativas
+56.3,84671900,Outras ferramentas pneumáticas; martelos ou marteletes; pistolas de ar comprimido para lubrificação
+56.4,84678100,Serra de corrente
+56.5,846729,"Outras ferramentas com motor elétrico ou não elétrico incorporado, de uso manual"
+56.5,84678900,"Outras ferramentas com motor elétrico ou não elétrico incorporado, de uso manual"
+57.1,84681000,Maçaricos de uso manual
+57.2,84682000,Outras máquinas e aparelhos a gás para soldar matérias termo-plásticas; qualquer outro aparelho para soldar ou cortar; aparelhos manuais ou pistolas para têmpera superficial; qualquer outro aparelho para têmpera superficial
+57.3,84688010,Outras máquinas e aparelhos para soldar por fricção
+57.4,84688090,Outras máquinas e aparelhos para soldar
+58.1,84741000,"Máquinas e aparelhos para selecionar, peneirar, separar ou lavar"
+58.2,84742010,"Máquinas e aparelhos para esmagar, moer ou pulverizar, de bolas"
+58.3,84742090,"Outras máquinas e aparelhos para esmagar, moer ou pulverizar"
+58.4,84743100,Betoneiras e aparelhos para amassar cimento
+58.5,84743200,Máquinas para misturar matérias minerais com betume
+58.6,84743900,Outras máquinas e aparelhos para misturar ou amassar
+58.7,84748010,Outras máquinas e aparelhos para fabricação de moldes de areia para fundição
+58.8,84748090,"Outras máquinas e aparelhos para selecionar, peneirar, separar, lavar, esmagar, moer, misturar ou amassar terras, pedras, minérios ou outras substâncias minerais sólidas; máquinas para fabricar tijolos"
+59.1,84751000,"Máquinas para montagem de lâmpadas, tubos ou válvulas, elétricos ou eletrônicos, ou de lâmpadas de luz relâmpago ('flash'), que tenham invólucro de vidro"
+59.2,84752100,Máquinas para fabricação de fibras ópticas e de seus esboços
+59.3,84752910,"Outra máquinas para fabricação de recipientes da posição 70.10, exceto ampolas"
+59.4,84752990,"Outras máquinas para fabricação ou trabalho a quente do vidro ou das suas obras; máquinas para moldagem de lâmpadas, válvulas e semelhantes"
+60.1,84771011,"Monocolor, para materiais termoplásticos, com capacidade de injeção inferior ou igual a 5.000g e força de fechamento inferior ou igual a 12.000kN"
+60.2,84771019,"Outras máquinas de moldar por injeção, horizontais, de comando numérico"
+60.3,84771021,"Monocolor, para materiais termoplásticos, com capacidade de injeção inferior ou igual a 5.000g e força de fechamento inferior ou igual a 12.000kN"
+60.4,84771029,"Outras máquinas de moldar por injeção, horizontais"
+60.5,84771091,"Outras máquinas de moldar por injeção, de comando numérico"
+60.6,84771099,Outras máquinas de moldar por injeção
+60.7,84772010,"Extrusoras, para materiais termoplásticos, com diâmetro da rosca inferior ou igual a 300mm"
+60.8,84772090,Outras extrusoras
+60.9,84773010,"Máquinas de moldar por insuflação para fabricação de recipientes termoplásticos de capacidade inferior ou igual a 5 litros, com uma produção inferior ou igual a 1.000 unidades por hora, referente a recipiente de 1 litro"
+60.10,84773090,Outras máquinas de moldar por insuflação
+60.11,84774010,Máquina de moldar a vácuo poliestireno expandido (EPS) ou polipropileno expandido (EPP)
+60.12,84774090,Outras máquinas de moldar a vácuo e outras máquinas de termoformar
+60.13,84775100,Máquina para moldar ou recauchutar pneumáticos ou para moldar ou dar forma a câmaras-de-ar
+60.14,84775911,Prensa com capacidade inferior ou igual a 30.000kN
+60.15,84775919,Outras prensas
+60.16,84775990,Outras máquinas e aparelhos para moldar ou dar forma
+60.17,84778010,"Máquina de unir lâminas de borracha entre si ou com tecidos com borracha, para fabricação de pneumáticos"
+60.18,84778090,Outras máquinas e aparelhos para trabalhar borracha ou plásticos ou para fabricação de produtos dessas matérias
+61,84781090,"Outras máquinas e aparelhos para preparar ou transformar tabaco; máquinas para fabricar cigarros, charutos, cigarrilhas e semelhantes; máquinas debulhadoras de tabaco em folha; máquinas separadoras lineares de tabaco em folha; máquinas classificadoras de lâmina de tabaco em folhas; distribuidora tipo ""Splitter"" para tabaco em folha; cilindros condicionados de tabaco em folha; cilindros rotativos com peneiras para tabaco em folha"
+62.1,84792000,Máquinas e aparelhos para extração ou preparação de óleos ou gorduras vegetais fixos ou de óleos ou gorduras animais
+62.2,84793000,"Prensas para fabricação de painéis de partículas, de fibras de madeira ou de outras matérias lenhosas, e outras máquinas e aparelhos para tratamento de madeira ou de cortiça"
+62.3,84794000,Máquinas para fabricação de cordas ou cabos
+62.4,84798110,"Diferenciadores das tensões de tração de entrada e saída da chapa, em instalações de galvanoplastia"
+62.5,84798190,"Outras máquinas e aparelhos para tratamento de metais, incluídas as bobinadoras para enrolamentos elétricos"
+62.6,84798922,"Máquinas e aparelhos para fabricação de pincéis, brochas ou escovas"
+62.7,84798999,Outras máquinas e aparelhos; packer (obturador)
+63.1,84801000,Caixas de fundição
+63.2,84803000,"Modelos para moldes: de madeira, de alumínio, de ferro, ferro fundido ou aço, de cobre, bronze ou latão, de níquel, de chumbo, de zinco, outros"
+63.3,84804100,"Moldes para metais ou carbonetos metálicos, para moldagem por injeção ou por compressão"
+63.4,84804910,Coquilhas
+63.5,84804990,Outros moldes para metais ou carbonetos metálicos; moldes de tipografia
+63.6,84805000,Moldes para vidro
+63.7,84806000,Moldes para matérias minerais
+63.8,84807100,"Moldes para borracha ou plásticos, para moldagem por injeção ou por compressão"
+63.9,84807900,Outros moldes para borracha ou plásticos
+64.1,84818093,Válvulas tipo gaveta
+64.2,84818095,Válvulas tipo esfera
+64.3,84818097,Válvulas tipo borboleta
+64.4,84818099,"Outros dispositivos para canalizações, caldeiras, reservatórios, cubas e outros recipientes; árvore de natal"
+65.1,84834010,"Caixas de transmissão, redutores, multiplicadores e variadores de velocidade, incluídos os conversores de torques"
+65.2,84834090,Outros eixos de esferas ou de roletes; engrenagens e rodas de fricção
+66.1,85044010,Carregadores de acumuladores
+66.2,85044090,Acionamento eletrônico de gaiolas; conversor e retificador para laminação e trefiladeiras; inversores digital para variação de rotação de motores elétricos em laminadores e trefiladeiras
+67.1,85141010,"Fornos de resistência, de aquecimento indireto, industriais"
+67.2,85142011,"Fornos que funcionam por indução, industriais"
+67.3,85142020,Fornos que funcionam por perdas dielétricas
+67.4,85143011,"Fornos de resistência, de aquecimento direto, industriais"
+67.5,85143021,"Fornos de arco voltaico, industriais"
+67.6,85143090,Outros fornos elétricos industriais; fornos industriais de banho; fornos industriais de raios infra-vermelhos
+67.7,85149000,Partes e peças para fornos industriais; controlador eletrônico para forno à arco; estrutura metálica para forno à arco (superestrutura); braços de suporte de eletrodos para forno à arco com sistema de fixação e abertura por cilindros hidráulicos/molas pratos
+68.1,85152100,Máquinas e aparelhos para soldar metais por resistência Inteira ou parcialmente automáticos
+68.2,85153110,"Robôs para soldar, por arco, em atmosfera inerte (MIG -'Metal Inert Gas') ou atmosfera ativa (MAG -'Metal Active Gas'), de comando numérico"
+68.3,85153190,"Outras máquinas e aparelhos para soldar metais por arco ou jato de plasma, inteira ou parcialmente automáticos"
+68.4,85153900,Outras máquinas e aparelhos para soldar metais por arco ou jato de plasma
+68.5,85158010,Outras máquinas e aparelhos para soldar a “laser”
+68.6,85158090,Outros máquinas e aparelhos para soldar
+69,85433000,"Instalação contínua de galvanoplastia eletrolítica de fios de aço, por processo de alta densidade de corrente, com unidades de decapagem eletrolítica, de lavagem e de estanhagem, com controlador de processo"
+70,86071919,Mancal de bronze para locomotiva
+71,90241090,Máquinas e aparelhos para ensaios de metais - câmara para teste de correção denominada “Salt Spray”
+72.1,85437099,Codificadoras de anéis coloridos
+72.2,85437099,Revisoras

@@ -1,0 +1,37 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check . && ruff format --check .
+      - run: pytest -q
+
+  pacote:
+    # o wheel precisa levar as tabelas: instala fora do repositório e calcula uma nota
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install build && python -m build
+      - run: |
+          python -m venv /tmp/limpo
+          /tmp/limpo/bin/pip install dist/*.whl
+          cd /tmp
+          echo '{"data":"2026-10-23","emitente":{"uf":"SP"},"destinatario":{"uf":"BA"},"itens":[{"ncm":"84378010","valor":"1000","beneficio":"conv52_91_anexo_i","cest":null}]}' \
+            | /tmp/limpo/bin/tributos-br - | grep '"valor": "51.40"'

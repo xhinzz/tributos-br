@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tributos-br"
+version = "0.1.0"
+description = "Cálculo dos tributos de NF-e de mercadoria: IPI, ICMS, FCP, DIFAL, ST, benefícios, PIS/COFINS e IBS/CBS, com fonte legal em cada valor."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "xhinzz" }]
+keywords = ["nfe", "icms", "ipi", "pis", "cofins", "ibs", "cbs", "difal", "tributos", "brasil"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "openpyxl>=3.1"]
+
+[project.urls]
+Repository = "https://github.com/xhinzz/tributos-br"
+
+[project.scripts]
+tributos-br = "tributos_br.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["tributos_br*"]
+
+[tool.setuptools.package-data]
+tributos_br = ["dados/*.csv", "dados/listas/*.csv"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

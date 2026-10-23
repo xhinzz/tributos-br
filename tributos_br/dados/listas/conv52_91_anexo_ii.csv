@@ -1,0 +1,95 @@
+item,ncm,descricao
+1.1,39239000,"Reservatórios, tambores, latas e recipientes semelhantes, de plástico, de capacidade não superior a 300 litros, para transporte de leite"
+1.2,76129090,"Reservatórios, tambores, latas e recipientes semelhantes, de liga de alumínio, de capacidade não superior a 300 litros, para transporte de leite"
+1.3,73101090,"Reservatórios, tambores, latas e recipientes semelhantes, de ferro fundido, ferro ou aço, de capacidade não superior a 300 litros, para transporte de leite"
+1.3,73102910,"Reservatórios, tambores, latas e recipientes semelhantes, de ferro fundido, ferro ou aço, de capacidade não superior a 300 litros, para transporte de leite"
+1.3,73102990,"Reservatórios, tambores, latas e recipientes semelhantes, de ferro fundido, ferro ou aço, de capacidade não superior a 300 litros, para transporte de leite"
+1.4,74199990,"Reservatórios, tambores, latas e recipientes semelhantes, de latão (liga de cobre e zinco), de capacidade não superior a 300 litros, para transporte de leite"
+2.1,39173290,"Silos de matéria plástica artificial ou de lona plastificada, com capacidade superior a 300 litros"
+2.1,39251000,"Silos de matéria plástica artificial ou de lona plastificada, com capacidade superior a 300 litros"
+2.2,73090010,Silos de ferro ou aço para armazenamento de grãos e outras matérias sólidas
+2.3,84198999,"Silos com dispositivos de ventilação ou aquecimento (ventiladores ou aquecedores) incorporados, de qualquer matéria"
+2.4,84798940,"Silos metálicos para cereais, fixos (não transportáveis), incluídas as baterias, com mecanismos elevadores ou extratores incorporados"
+2.5,94060091,Silos pré-fabricados com estrutura de madeira e paredes exteriores constituídas essencialmente dessa matéria
+2.6,94060092,Silos pré-fabricados com estrutura de ferro ou aço e paredes exteriores constituídas essencialmente dessa matéria
+3,44219000,Troncos (bretes) de contenção bovina
+4.1,73269090,Comedouros para animais
+4.2,73269090,Ninhos metálicos para aves
+4.3,87087090,Esteiras ou lagartas especiais para proteção de pneus de tratores
+5.1,82011000,Pás
+5.2,82012000,Forcados e forquilhas
+5.3,82013000,"Alviões, picaretas, enxadas, sachos, ancinhos e raspadeiras"
+5.4,82014000,"Machados, podões e ferramentas semelhantes com gume"
+5.5,82015000,Tesouras de podar (incluídas as tesouras para aves) manipuladas com uma das mãos
+5.6,82016000,"Tesouras para sebes, tesouras de podar e ferramentas semelhantes, manipuladas com as duas mãos"
+5.7,82019000,"Outras ferramentas manuais, para agricultura, horticultura e silvicultura"
+6,84128000,Moinhos de vento (cata-vento) destinados a bombear água
+7.1,84145990,Ventiladores
+7.2,84148011,"Compressores de ar estacionários, de pistão"
+7.3,84148019,Outros compressores de ar
+7.4,84148090,Coifas (exaustores)
+8,84193100,Secadores para produtos agrícolas
+9,84238200,Balanças bovinas mecânicas ou eletrônicas
+10.1,84244100,"Aparelho para projetar, dispersar ou pulverizar fungicidas, inseticidas e outros produtos para combate a pragas, de uso agrícola, manuais"
+10.2,84244900,"Outros aparelhos para projetar, dispersar ou pulverizar fungicidas, inseticidas e outros produtos para combate a pragas, de uso agrícola"
+10.3,84248221,"Irrigadores e sistemas de irrigação para uso na lavoura, por aspersão, inclusive os elementos integrantes desses sistemas, como máquinas, aparelhos, equipamentos, dispositivos e instrumentos."
+10.4,84248229,"Outros irrigadores e sistemas de irrigação, inclusive os elementos integrantes desses sistemas, como máquinas, aparelhos, equipamentos, dispositivos e instrumentos."
+11.1,84272090,"Máquina apanhadora e carregadora de cana, autopropulsada"
+11.2,84279000,Carregadores para serem acoplados a trator agrícola
+12,84306990,"Plainas niveladoras de levantamento hidráulico; valetadeira rebocável, do tipo utilizado exclusivamente na agricultura; raspo-transportador (""Scraper""), rebocável, de 2 (duas) rodas, com capacidade de carga de 1,00 m3 a 3,00 m3, do tipo utilizado exclusivamente em trabalhos agrícolas"
+13.1,84321000,Arado de disco
+13.2,84322900,Enxadas rotativas
+13.3,84323110,Semeadores-adubadores
+13.3,84323910,Semeadores-adubadores
+13.4,84323190,Outros plantadores e transplantadores
+13.5,84324100,Espalhadores de estrume e distribuidores de adubos (fertilizantes)
+13.5,84324200,Espalhadores de estrume e distribuidores de adubos (fertilizantes)
+13.6,84328000,"Outras máquinas e aparelhos de uso agrícola, hortícola ou florestal para preparação ou trabalho do solo"
+13.7,84329000,"Partes de máquinas e aparelhos de uso agrícola, hortícola ou florestal, para preparação ou trabalho do solo ou para cultura"
+13.8,84322100,Grades de discos
+14.1,84331100,"Cortadores de grama, motorizados, cujo dispositivo de corte gira num plano horizontal"
+14.2,84331900,Outros cortadores de grama
+14.3,84332010,"Ceifeiras, incluídas as barras de corte para montagem em tratores, com dispositivo de acondicionamento em fileiras constituído por rotor de dedos e pente"
+14.4,84332090,"Outras ceifeiras, incluídas as barras de corte para montagem em tratores"
+14.5,84333000,Outras máquinas e aparelhos para colher e dispor o feno
+14.6,84334000,"Enfardadeiras de palha ou de forragem, incluídas as enfardadeiras-apanhadeiras"
+14.7,84335100,Ceifeiras-debulhadoras
+14.8,84335200,Outras máquinas e aparelhos para debulha
+14.9,84335300,Máquinas para colheita de raízes ou tubérculos
+14.10,84335911,"Colheitadeiras de algodão, com capacidade para trabalhar até dois sulcos de colheita e potência no volante inferior ou igual a 59,7kW (80HP)"
+14.11,84335919,Outras colheitadeiras de algodão
+14.12,84335990,Aparelhos para colheita; máquinas e aparelhos para debulha
+14.13,84336010,Selecionadores de frutas
+14.14,84336021,Máquinas para limpar ou selecionar ovos com capacidade superior ou igual a 36.000 ovos por hora
+14.15,84336029,Outras máquinas para limpar ou selecionar ovos
+14.16,84336090,Outras máquinas para limpar ou selecionar produtos agrícolas
+14.17,84339090,Partes de máquinas agrícolas para colheita e debulha
+14.18,84678900,Derriçador manual de café – “mãozinha”
+14.19,84678900,"Roçadeiras e podadores elétricos ou com motor a combustão incorporado, com potência igual ou superior a 0,5kW"
+14.19,84672999,"Roçadeiras e podadores elétricos ou com motor a combustão incorporado, com potência igual ou superior a 0,5kW"
+15,84341000,Máquinas de ordenhar
+16.1,84361000,Máquinas e aparelhos para preparação de alimentos ou rações para animais
+16.2,84362100,Chocadeiras e criadeiras
+16.3,84362900,Outros aparelhos para avicultura
+16.4,84368000,"Outras máquinas e aparelhos para agricultura, horticultura, silvicultura ou apicultura"
+16.5,84369100,Partes de máquinas e aparelhos para avicultura
+16.6,84369900,"Partes de máquinas e aparelhos para agricultura, horticultura, silvicultura ou apicultura"
+17,84678100,"Motosserras portáteis de corrente, com motor a combustão, de potência igual ou superior a 1,2kW, e sujeitas ao registro no IBAMA"
+18,85269100,Aparelho de radionavegação para uso agrícola
+19.1,87011000,Motocultores
+19.2,87019100,"Tratores agrícolas de rodas, sem esteiras"
+19.2,87019200,"Tratores agrícolas de rodas, sem esteiras"
+19.2,87019300,"Tratores agrícolas de rodas, sem esteiras"
+19.2,87019490,"Tratores agrícolas de rodas, sem esteiras"
+19.2,87019590,"Tratores agrícolas de rodas, sem esteiras"
+20,84138100,"Outras bombas, cujo funcionamento não seja o mesmo das bombas volumétricas ou centrífugas"
+21.1,87162000,"Reboques e semi-reboques, autocarregáveis ou autodescarregáveis, para usos agrícolas"
+21.2,87168000,Veículos de tração animal
+22.1,88022010,"Aviões, à hélice, de peso não superior a 2.000kg, vazios, quando houverem recebido previamente o Certificado de Homologação de Tipo expedido pelo órgão competente do Ministério da Aeronáutica"
+22.2,88023010,"Aviões, à hélice, de peso superior a 2.000kg, mas não superior a 15.000kg, vazios, quando houverem recebido previamente o Certificado de Homologação de Tipo expedido pelo órgão competente do Ministério da Aeronáutica"
+23.1,88031000,"Hélices e rotores, e suas partes"
+23.2,88032000,Trens de aterrissagem e suas partes
+23.3,88033000,Outras partes de aviões
+23.4,88039000,Outras
+24,90278014,Ovascan
+25,94060010,"Estufa agrícola pré-fabricada em estrutura de aço ou alumínio, com coberturas e fechamentos em filmes, telas ou placas de plástico, opcionalmente com janelas e cortinas de acionamento manual ou motorizado, exaustores, iluminação elétrica, bancadas de cultivo e sistemas de aquecimento"

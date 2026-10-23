@@ -1,0 +1,32 @@
+uf,aliquota_interna,fcp,difal_base,difal_conferido,vigencia_inicio,vigencia_fim,fonte,observacao
+AC,19,0,dupla,nao,2023-04-01,,"LC AC 422/2022 (art. 18 da LC 55/1997)",
+AL,19,1,dupla,nao,2023-04-01,2026-03-31,"Lei AL 5.900/1996, art. 17, I, b; FECOEP: Lei 6.558/2004, art. 2º-A",FECOEP geral com exceções (Dec. 2.845/2005)
+AL,20.5,1,dupla,nao,2026-04-01,,"Lei AL 9.776/2025 (art. 17, I, b, da Lei 5.900/1996); FECOEP: Lei 6.558/2004, art. 2º-A",FECOEP geral com exceções (Dec. 2.845/2005)
+AM,20,0,unica,nao,2023-04-01,,"LC AM 242/2022 (art. 12, I, b, da LC 19/1997)",
+AP,18,0,dupla,nao,2025-01-01,,"RICMS/AP, Anexo I, art. 25, III, i",vigente antes de 2025; início anterior não levantado
+BA,20.5,0,dupla,nao,2024-02-07,,"Lei BA 14.629/2023 (art. 15, I, da Lei 7.014/1996)",
+CE,20,0,por_dentro,nao,2024-01-01,,"Lei CE 18.305/2023 (art. 65 da Lei 18.665/2023)",
+DF,20,0,unica,nao,2024-01-22,,"Lei DF 7.326/2023 (art. 18, II, c, da Lei 1.254/1996)",
+ES,17,0,dupla,nao,2025-01-01,,"Lei ES 7.000/2001, art. 20, I",vigente antes de 2025; início anterior não levantado
+GO,19,0,por_dentro,nao,2024-04-01,,"Lei GO 22.460/2023 (art. 27, I, do CTE, Lei 11.651/1991)",
+MA,22,0,unica,nao,2024-01-01,2025-02-22,"Lei MA 12.120/2023 (art. 23, III, da Lei 7.799/2002)",início anterior a 2025 não conferido
+MA,23,0,unica,nao,2025-02-23,,"Lei MA 12.426/2024 (art. 23, III, da Lei 7.799/2002)",
+MG,18,0,dupla,nao,2025-01-01,,"Lei MG 6.763/1975, art. 12, I",vigente antes de 2025; início anterior não levantado
+MS,17,0,dupla,nao,2025-01-01,,"Lei MS 1.810/1997, art. 41",vigente antes de 2025; início anterior não levantado
+MT,17,0,unica,nao,2025-01-01,,"Lei MT 7.098/1998; RICMS/MT (Dec. 2.212/2014), art. 95",vigente antes de 2025; início anterior não levantado
+PA,19,0,unica,nao,2023-03-16,,"Lei PA 9.755/2022 (art. 12, VII, da Lei 5.530/1989)",
+PB,20,0,unica,nao,2024-01-01,,"Lei PB 12.788/2023 (art. 11, I, da Lei 6.379/1996)",
+PE,20.5,0,unica,nao,2024-01-01,,"Lei PE 18.305/2023 (art. 15, VII, da Lei 15.730/2016)",
+PI,21,0,por_dentro,nao,2023-01-01,2025-03-31,"Lei PI 4.257/1989, art. 23, I, c",início anterior a 2025 não conferido
+PI,22.5,0,por_dentro,nao,2025-04-01,,"Lei PI 8.558/2024 (art. 23, I, c, da Lei 4.257/1989)",
+PR,19.5,0,unica,nao,2024-03-18,,"Lei PR 21.850/2023 (art. 14, VIII, da Lei 11.580/1996)",
+RJ,20,2,unica,nao,2024-03-20,,"Lei RJ 10.253/2023 (art. 14 da Lei 2.657/1996); FECP: LC 210/2023",carga efetiva 22% com o FECP
+RN,18,0,unica,nao,2024-01-01,2025-03-19,"Lei RN 6.968/1996, art. 27, I, a",
+RN,20,0,unica,nao,2025-03-20,,"Lei RN 11.999/2024 (art. 27, I, a, da Lei 6.968/1996)",
+RO,19.5,0,unica,nao,2024-01-12,,"Lei RO 5.634/2023 (art. 27, I, c, da Lei 688/1996)",
+RR,20,0,unica,nao,2023-03-30,,"Lei RR 1.767/2022 (art. 32 da Lei 59/1993)",
+RS,17,0,unica,nao,2022-01-01,,"Lei RS 8.820/1989; RICMS/RS (Dec. 37.699/1997), Livro I, art. 27, X",
+SC,17,0,unica,nao,2025-01-01,,"Lei SC 10.297/1996, art. 19; RICMS/SC (Dec. 2.870/2001), art. 26, I",vigente antes de 2025; início anterior não levantado
+SE,19,1,unica,nao,2023-04-01,,"Lei SE 9.176/2023 (art. 18, I, j, da Lei 3.796/1996); FECOEP: Lei 9.177/2023",FECOEP geral com exceções (RICMS/SE art. 616-C-A)
+SP,18,0,unica,nao,2025-01-01,,"Lei SP 6.374/1989, art. 34; RICMS/SP, art. 52, I",vigente antes de 2025; início anterior não levantado
+TO,20,0,unica,nao,2024-01-01,,"Lei TO 4.141/2023 (art. 27, II, da Lei 1.287/2001)",

@@ -1,5 +1,6 @@
 """Tributos de NF-e de mercadoria."""
 
+from .auditoria import auditar
 from .calculo import calcular
 from .modelos import Beneficio, Item, Nota, Participante, Regime, ResultadoItem, ResultadoNota, Tratamento, Tributo
 from .tabelas import sugerir as sugerir_beneficios
@@ -15,6 +16,7 @@ __all__ = [
     "ResultadoNota",
     "Tratamento",
     "Tributo",
+    "auditar",
     "calcular",
     "sugerir_beneficios",
     "sugerir_cclass_trib",

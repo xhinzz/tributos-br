@@ -1,4 +1,4 @@
-"""Cálculo dos tributos de uma NF-e de mercadoria: IPI, ICMS (próprio, FCP, DIFAL, ST, benefícios), PIS/COFINS e IBS/CBS."""
+"""Tributos de NF-e de mercadoria."""
 
 from .calculo import calcular
 from .modelos import Beneficio, Item, Nota, Participante, Regime, ResultadoItem, ResultadoNota, Tratamento, Tributo

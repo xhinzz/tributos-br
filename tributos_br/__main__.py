@@ -1,10 +1,4 @@
-"""Linha de comando: lê a nota em JSON (arquivo ou stdin) e imprime o cálculo em JSON.
-
-    tributos-br nota.json
-    cat nota.json | tributos-br -
-
-Serve também para usar a biblioteca de outras linguagens, chamando o processo.
-"""
+"""Nota em JSON (arquivo, ou '-' para stdin) -> cálculo em JSON."""
 
 from __future__ import annotations
 

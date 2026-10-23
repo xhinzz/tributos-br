@@ -1,8 +1,4 @@
-"""Tabelas versionadas por vigência (tributos_br/dados/*.csv).
-
-Toda linha traz vigencia_inicio (e, quando houver, vigencia_fim) e a fonte legal. A consulta devolve a linha
-vigente na data da nota, então a mudança de uma alíquota é uma linha nova no CSV, não uma alteração de código.
-"""
+"""Tabelas de dados/, por vigência: alíquota nova é linha nova no CSV, e nota antiga segue com a regra antiga."""
 
 from __future__ import annotations
 
@@ -32,8 +28,8 @@ class DadosUF:
     uf: str
     aliquota_interna: Decimal
     fcp: Decimal
-    difal_base: str  # "unica", "dupla" ou "por_dentro" (ver icms._difal)
-    difal_conferido: bool  # método do DIFAL confirmado em fonte oficial da UF
+    difal_base: str  # unica | dupla | por_dentro
+    difal_conferido: bool  # método confirmado em fonte oficial da UF
     fonte: str
 
 
@@ -63,7 +59,7 @@ def _tipi() -> dict[tuple[str, str], str]:
 
 
 def aliquota_tipi(ncm: str, ex: str = "") -> Decimal | None:
-    """Alíquota de IPI da TIPI; None quando o NCM é 'NT' (não tributado). KeyError se o NCM não existe."""
+    """None se NT. KeyError se o NCM não está na TIPI."""
     aliquota = _tipi()[(ncm, ex)]
     return None if aliquota == "NT" else D(aliquota)
 
@@ -88,7 +84,7 @@ def _lista(nome: str) -> tuple[str, ...]:
 
 
 def _ncms_da_regra(linha: dict[str, str]) -> tuple[str, ...]:
-    """Prefixos de NCM cobertos; vazio quando o convênio descreve o produto sem NCM."""
+    """Vazio: o ato descreve o produto sem NCM."""
     campo = linha["ncm"]
     if campo.startswith("@"):
         return _lista(campo[1:])
@@ -100,10 +96,10 @@ def _cobre(prefixos: tuple[str, ...], ncm: str) -> bool:
 
 
 def regra(codigo: str, ncm: str, uf_origem: str, uf_destino: str, aliquota: Decimal, data: date) -> Regra:
-    """Regra de benefício declarada pelo usuário, conferida contra NCM, UF, operação, alíquota e vigência.
+    """Benefício declarado por quem emite.
 
-    Quem declara é o usuário porque o enquadramento depende de condições que só ele conhece (destinação, registro
-    no MAPA, descrição exata do produto). A biblioteca recusa o que a regra comprovadamente não cobre.
+    Só ele sabe se as condições do ato se cumprem (destinação, registro no MAPA, descrição exata); aqui só se recusa
+    o que comprovadamente não cabe.
     """
     linhas = [linha for linha in _beneficios() if linha["codigo"] == codigo]
     if not linhas:
@@ -135,19 +131,15 @@ def regra(codigo: str, ncm: str, uf_origem: str, uf_destino: str, aliquota: Deci
 def _percentual(linha: dict[str, str], aliquota: Decimal) -> Decimal:
     if not linha["carga"]:
         return D(linha["percentual"] or 0)
-    # carga tributária efetiva: a redução de base é a que leva a alíquota até a carga
+    # carga efetiva -> redução de base
     carga = D(linha["carga"])
     if carga >= aliquota:
-        return Decimal(0)  # a alíquota já não passa da carga: nada a reduzir
+        return Decimal(0)
     return ((1 - carga / aliquota) * 100).quantize(Decimal("0.0001"))
 
 
 def sugerir(ncm: str, data: date) -> list[tuple[str, str, str]]:
-    """Benefícios vigentes que podem cobrir o NCM: (código, descrição, critério).
-
-    Critério "ncm": o NCM está na lista do ato. Critério "descricao": o ato descreve o produto sem NCM, e só a
-    leitura da descrição e das condições confirma. Os de lista vêm primeiro.
-    """
+    """(código, descrição, critério). 'ncm': casou na lista do ato; 'descricao': só lendo o ato."""
     vistos: dict[str, tuple[str, str]] = {}
     for linha in _beneficios():
         prefixos = _ncms_da_regra(linha)
@@ -165,7 +157,7 @@ def _cest() -> dict[str, tuple[str, ...]]:
 
 
 def conferir_cest(cest: str, ncm: str) -> None:
-    """CEST do Conv. ICMS 142/2018 e compatibilidade com o NCM (cl. 7ª)."""
+    """Conv. 142/18, cl. 7ª."""
     ncms = _cest().get(cest)
     if ncms is None:
         raise ValueError(f"CEST {cest} não existe no Conv. ICMS 142/2018")
@@ -179,7 +171,7 @@ def _mva() -> list[dict[str, str]]:
 
 
 def mva(uf_destino: str, ncm: str, cest: str | None, data: date) -> tuple[Decimal, str] | None:
-    """MVA original da ST na UF de destino, pelo CEST (quando a linha exige) e prefixo de NCM mais específico."""
+    """MVA original por UF de destino e CEST."""
     candidatas = []
     for linha in _mva():
         if linha["uf"] != uf_destino or not _vigente(linha, data):

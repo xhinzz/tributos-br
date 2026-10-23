@@ -1,4 +1,4 @@
-"""PIS e COFINS na saída de mercadoria, pelo regime do emitente."""
+"""PIS/COFINS pelo regime do emitente."""
 
 from __future__ import annotations
 
@@ -6,7 +6,7 @@ from decimal import Decimal
 
 from .modelos import ZERO, Item, Nota, Regime, Tributo, centavos, pct
 
-# CSTs do grupo PISNT/COFINSNT (leiaute da NF-e 4.00)
+# grupo PISNT/COFINSNT
 _SEM_INCIDENCIA = {
     "monofasico": ("04", "revenda de produto monofásico, alíquota zero (tributado no fabricante ou importador)"),
     "aliquota_zero": ("06", "alíquota zero"),
@@ -29,7 +29,6 @@ def calcular(nota: Nota, item: Item, valor_icms: Decimal) -> dict[str, Tributo]:
         cst, motivo = _SEM_INCIDENCIA[item.pis_cofins]
         return {"PIS": Tributo(ZERO, ZERO, ZERO, cst, motivo), "COFINS": Tributo(ZERO, ZERO, ZERO, cst, motivo)}
     pis, cofins, fundamento = _ALIQUOTAS[regime]
-    # STF Tema 69 (RE 574.706): o ICMS destacado não compõe a base
     base = item.valor_operacao - valor_icms
     fundamento += "; base sem o ICMS (STF, Tema 69)"
     return {

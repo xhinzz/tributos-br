@@ -1,9 +1,8 @@
-"""Baixa a TIPI oficial da Receita Federal (xlsx) e gera tributos_br/dados/tipi.csv.
+"""TIPI da Receita (xlsx) -> tributos_br/dados/tipi.csv. Requer openpyxl.
 
-Uso: python scripts/atualizar_tipi.py [caminho.xlsx]   (requer openpyxl)
+    python scripts/atualizar_tipi.py [tipi.xlsx]
 
-A planilha mistura tipos na coluna de alíquota (número com ruído de float, 'NT', vazio nas linhas de
-agrupamento); só ficam as linhas de NCM com 8 dígitos.
+A coluna de alíquota tem tipo misto: float com ruído (7.800000000000001), 'NT' e vazio nos agrupamentos.
 """
 
 import csv
@@ -20,7 +19,7 @@ DESTINO = Path(__file__).resolve().parent.parent / "tributos_br" / "dados" / "ti
 
 
 def baixar() -> bytes:
-    # o gov.br responde 403 sem User-Agent de navegador
+    # gov.br devolve 403 sem User-Agent de navegador
     pedido = urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
     with urllib.request.urlopen(pedido, timeout=60) as resposta:
         return resposta.read()

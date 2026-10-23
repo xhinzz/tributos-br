@@ -1,4 +1,4 @@
-"""O exemplo de abertura do README roda e imprime exatamente o que o README mostra."""
+"""O exemplo do README roda e imprime o que o README mostra."""
 
 import contextlib
 import io

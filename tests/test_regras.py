@@ -1,4 +1,4 @@
-"""Base de regras: benefícios (Conv. 100/97 e 52/91), CEST (Conv. 142/18) e MVA, conferidos contra o texto dos atos."""
+"""Regras conferidas contra o texto dos atos."""
 
 from datetime import date
 from decimal import Decimal

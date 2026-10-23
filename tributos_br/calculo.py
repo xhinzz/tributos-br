@@ -1,4 +1,4 @@
-"""Orquestra o cálculo item a item: IPI primeiro (entra na base do ICMS e da ST), depois ICMS, PIS/COFINS e IBS/CBS."""
+"""A ordem importa: IPI entra na base do ICMS/ST, ICMS na do PIS/COFINS, e tudo isso sai da do IBS/CBS."""
 
 from __future__ import annotations
 

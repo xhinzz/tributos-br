@@ -43,6 +43,29 @@ IBS_MUN     667.27 ×    0% =    0.00  CST 000  LC 214/2025 (arts. 343 e 346, al
 O IPI entra na base do ICMS porque o destino é consumidor final; o DIFAL e o FCP do RJ vão para o destino; PIS e
 COFINS saem sem o ICMS; e a base do IBS/CBS desconta ICMS, DIFAL, FCP, PIS e COFINS, como manda o art. 12 da LC 214.
 
+![Cálculo de uma venda de SP a consumidor final no RJ](docs/img/consumidor_final.svg)
+
+<sub>Linha em amarelo: o método do DIFAL daquela UF ainda não tem confirmação oficial (veja [DIFAL](#difal)).
+Os prints são gerados do cálculo de verdade por `scripts/gerar_imagens.py`.</sub>
+
+## Como o cálculo anda
+
+A ordem importa, porque cada tributo entra (ou sai) da base do seguinte:
+
+```mermaid
+flowchart LR
+    V["valor da operação<br/>produto + frete + seguro<br/>+ outras − desconto"] --> IPI
+    IPI -->|"entra se consumidor final"| ICMS["ICMS próprio<br/>+ FCP"]
+    IPI -->|"sempre entra"| ST["ICMS-ST<br/>(MVA)"]
+    ICMS -->|"deduzido"| ST
+    ICMS -->|"interestadual a<br/>não contribuinte"| DIFAL["DIFAL<br/>+ FCP destino"]
+    ICMS -->|"sai da base<br/>(Tema 69)"| PIS["PIS / COFINS"]
+    ICMS & DIFAL & PIS -->|"saem da base<br/>(LC 214, art. 12)"| IBS["IBS / CBS"]
+    B(["benefício<br/>redução · isenção · diferimento"]) -.-> ICMS
+    B -.->|"redução no destino"| DIFAL
+    B -.-> ST
+```
+
 ## O que cobre
 
 | Tributo | O que a biblioteca resolve | Fonte dos dados |
@@ -133,6 +156,8 @@ A ST entra quando o destinatário é contribuinte que vai revender e há MVA, in
 encontrada na tabela pela UF de destino e pelo CEST. A MVA é ajustada nas operações interestaduais, exceto para
 remetente do Simples e quando a alíquota interna do destino não passa da interestadual.
 
+![ST com MVA ajustada e benefício do Conv. 52/91](docs/img/st_e_beneficio.svg)
+
 ### DIFAL
 
 As UFs não calculam o DIFAL do mesmo jeito. Com R$ 1.000 de São Paulo (7%) para uma UF de 20%:
@@ -218,6 +243,7 @@ pytest              # 261 testes; os valores esperados foram calculados à mão,
 ruff check . && ruff format --check .
 python scripts/atualizar_tipi.py        # baixa a TIPI da Receita
 python scripts/atualizar_convenios.py   # baixa os Convênios 142/2018 e 52/1991 do CONFAZ
+python scripts/gerar_imagens.py         # refaz os prints do README
 ```
 
 ## Licença

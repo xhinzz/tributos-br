@@ -19,7 +19,7 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6", "openpyxl>=3.1"]
+dev = ["pytest>=8", "ruff>=0.6", "openpyxl>=3.1", "rich>=13"]
 
 [project.urls]
 Repository = "https://github.com/xhinzz/tributos-br"

@@ -1,4 +1,4 @@
-"""Entradas e saídas do cálculo. Valores monetários e percentuais são sempre Decimal (percentual 18 = 18%)."""
+"""Entrada e saída. Dinheiro e percentual em Decimal; 18 é 18%."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ CEM = Decimal(100)
 
 
 def D(valor) -> Decimal:
-    """Converte para Decimal sem herdar o erro binário de float (0.1 vira '0.1', não 0.1000000000000000055)."""
+    """float passa por repr: 0.1 vira Decimal('0.1'), não 0.1000000000000000055."""
     if isinstance(valor, Decimal):
         return valor
     if isinstance(valor, float):
@@ -21,7 +21,6 @@ def D(valor) -> Decimal:
 
 
 def centavos(valor: Decimal) -> Decimal:
-    """Arredondamento da NF-e: duas casas, meio para cima."""
     return valor.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
 
@@ -36,8 +35,6 @@ class Regime(str, Enum):
 
 
 class Tratamento(str, Enum):
-    """Tratamento do ICMS próprio do item quando não é a tributação integral."""
-
     REDUCAO_BASE = "reducao_base"
     ISENCAO = "isencao"
     NAO_TRIBUTADA = "nao_tributada"
@@ -82,9 +79,9 @@ class Participante:
     uf: str
     regime: Regime = Regime.REAL
     contribuinte_icms: bool = True
-    # industrial ou equiparado: é quem destaca IPI
+    # destaca IPI
     industria: bool = False
-    # Simples com permissão de crédito (CSOSN 101/201): alíquota efetiva do ICMS no DAS do mês
+    # CSOSN 101/201: alíquota de ICMS do DAS no mês
     aliquota_credito_sn: Decimal | None = None
     cnpj: str | None = None
 
@@ -99,13 +96,13 @@ class Participante:
 
 @dataclass(frozen=True)
 class Beneficio:
-    """Benefício de ICMS informado na mão, quando a base de regras não cobre o caso."""
+    """Benefício que a base de regras não tem."""
 
     tratamento: Tratamento
-    percentual: Decimal = ZERO  # redução da base ou parcela diferida
+    percentual: Decimal = ZERO  # redução de base ou % diferido
     cbenef: str | None = None
     fundamento: str = "informado pelo usuário"
-    # redução da base que a UF de destino aplica no DIFAL e na ST, quando o benefício também vale lá
+    # redução que o destino aplica no DIFAL/ST
     reducao_destino: Decimal = ZERO
 
     def __post_init__(self):
@@ -120,22 +117,22 @@ class Beneficio:
 @dataclass(frozen=True)
 class Item:
     ncm: str
-    valor: Decimal  # valor total do item (quantidade × unitário)
-    origem: int = 0  # tabela de origem da mercadoria da NF-e (0 a 8)
+    valor: Decimal  # vProd
+    origem: int = 0  # 0 a 8, tabela da NF-e
     frete: Decimal = ZERO
     seguro: Decimal = ZERO
     outras: Decimal = ZERO
-    desconto: Decimal = ZERO  # desconto incondicional
+    desconto: Decimal = ZERO  # incondicional
     cest: str | None = None
-    ex_tipi: str = ""  # exceção tarifária da TIPI, quando o produto se enquadra em uma
+    ex_tipi: str = ""
     descricao: str = ""
-    # sobrescritas: quando informadas, prevalecem sobre as tabelas
+    # sobrescrevem as tabelas
     aliquota_ipi: Decimal | None = None
     aliquota_icms: Decimal | None = None
-    mva: Decimal | None = None  # presença liga a substituição tributária
-    # código de uma regra da base (ex.: "conv52_91_anexo_i") ou um Beneficio montado na mão
+    mva: Decimal | None = None  # liga a ST
+    # código da base (conv52_91_anexo_i...) ou Beneficio
     beneficio: Beneficio | str | None = None
-    # saída sem PIS/COFINS: monofasico (revenda, CST 04), aliquota_zero (06), isenta (07), suspensao (09)
+    # monofasico (CST 04) | aliquota_zero (06) | isenta (07) | suspensao (09)
     pis_cofins: str | None = None
 
     def __post_init__(self):
@@ -167,9 +164,9 @@ class Nota:
     destinatario: Participante
     itens: list[Item]
     data: date = field(default_factory=date.today)
-    # indFinal da NF-e; sem informar, vale "consumidor final = destinatário não contribuinte"
+    # indFinal; sem informar, segue o contribuinte_icms do destinatário
     consumidor_final: bool | None = None
-    # método do DIFAL quando o contribuinte segue orientação própria da UF de destino: unica, dupla ou por_dentro
+    # sobrescreve o método da UF: unica | dupla | por_dentro
     metodo_difal: str | None = None
 
     def __post_init__(self):
@@ -202,7 +199,7 @@ class ResultadoItem:
 
     @property
     def valor_total(self) -> Decimal:
-        """Contribuição do item ao vNF: produto − desconto + frete + seguro + outras + IPI + ST + FCP-ST."""
+        """Parcela do item no vNF. IBS/CBS ficam de fora em 2026 (NT 2025.002, VB01-10)."""
         t = self.tributos
         acrescimos = sum((t[n].valor for n in ("IPI", "ICMS_ST", "FCP_ST") if n in t), ZERO)
         return self.item.valor_operacao + acrescimos
@@ -225,7 +222,7 @@ class ResultadoNota:
         return sum((r.valor_total for r in self.itens), ZERO)
 
     def como_dict(self) -> dict:
-        """Forma serializável em JSON: Decimal vira texto, para não perder casas."""
+        """Decimal vira str, para o JSON não perder casa."""
 
         def limpar(obj):
             if isinstance(obj, Decimal):

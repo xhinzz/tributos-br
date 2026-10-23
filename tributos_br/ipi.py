@@ -1,4 +1,4 @@
-"""IPI: alíquota da TIPI pelo NCM, destacado por industrial ou equiparado fora do Simples."""
+"""IPI pela TIPI. Só industrial ou equiparado, fora do Simples, destaca."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ def calcular(nota: Nota, item: Item) -> Tributo | None:
     if item.aliquota_ipi is not None:
         aliquota, fundamento = item.aliquota_ipi, "alíquota de IPI informada"
     elif nota.data.year >= 2027:
-        # fora dos produtos com industrialização incentivada na ZFM, que precisam vir com aliquota_ipi
+        # ZFM continua tributada: informe aliquota_ipi
         return Tributo(ZERO, ZERO, ZERO, "51", "IPI reduzido a zero desde 2027 (EC 132/2023, ADCT art. 126, III, a)")
     else:
         try:
@@ -29,6 +29,6 @@ def calcular(nota: Nota, item: Item) -> Tributo | None:
         fundamento = f"TIPI (Decreto 11.158/2022), NCM {item.ncm}" + (f" EX {item.ex_tipi}" if item.ex_tipi else "")
     if aliquota == 0:
         return Tributo(ZERO, ZERO, ZERO, "51", f"{fundamento}: alíquota zero")
-    # RIPI art. 190: frete, seguro e demais despesas cobradas integram a base; desconto incondicional não
+    # RIPI, art. 190
     base = item.valor_operacao
     return Tributo(base, aliquota, centavos(base * pct(aliquota)), "50", fundamento)

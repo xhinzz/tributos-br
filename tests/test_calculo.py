@@ -1,4 +1,4 @@
-"""Notas completas, com cada valor esperado calculado à mão (a conta está no comentário de cada caso)."""
+"""Esperados calculados à mão; a conta está no comentário."""
 
 import json
 from datetime import date

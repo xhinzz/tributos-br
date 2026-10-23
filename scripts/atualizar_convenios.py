@@ -1,12 +1,8 @@
-"""Extrai dos convênios publicados no CONFAZ as tabelas que a biblioteca usa.
+"""CEST (Conv. 142/18, Anexos II a XXVI) e NCMs do Conv. 52/91 (Anexos I e II), direto do HTML do CONFAZ.
 
-- Conv. ICMS 142/2018, Anexos II a XXVI  -> tributos_br/dados/cest.csv (CEST, NCM, segmento, descrição)
-- Conv. ICMS 52/1991, Anexos I e II       -> tributos_br/dados/listas/conv52_91_anexo_i.csv e _anexo_ii.csv
+    python scripts/atualizar_convenios.py [pasta_com_os_html]
 
-Uso: python scripts/atualizar_convenios.py [pasta_com_html_baixado]
-
-O CONFAZ não publica essas tabelas em CSV; a fonte oficial é o HTML compilado do convênio, que intercala a redação
-vigente com as anteriores; ver _vigentes.
+Não existe CSV oficial, e o HTML compilado mistura a redação vigente com as antigas (ver _vigentes).
 """
 
 import csv
@@ -22,7 +18,7 @@ NCM = re.compile(r"\b\d{4}(?:\.\d{1,2}(?:\.\d{1,2})?)?\b")
 
 
 class _Tabelas(HTMLParser):
-    """Tabelas de primeiro nível, cada uma com o texto que a precede (onde fica o título do anexo)."""
+    """Tabelas de primeiro nível e o texto antes delas, onde fica o título do anexo."""
 
     def __init__(self):
         super().__init__()
@@ -69,11 +65,7 @@ def _item(texto: str) -> tuple[int, ...] | None:
 
 
 def _vigentes(linhas):
-    """Linhas de dados vigentes.
-
-    A compilação traz a redação vigente de cada item antes das anteriores, e as anteriores repetem o número do item:
-    fica só a linha cujo item é maior que o último aceito. Revogadas também ficam de fora.
-    """
+    """A vigente vem antes das antigas, que repetem o número do item: só passa item maior que o último."""
     ultimo = ()
     for linha in linhas:
         if len(linha) == 1 or not any(linha[1:]):
@@ -118,7 +110,7 @@ def conv52(html: str) -> dict[str, list[list[str]]]:
     anexos = {}
     for tabela in p.tabelas:
         anexo = re.findall(r"ANEXO (I{1,2})\b", tabela["titulo"])
-        # a primeira tabela de cada anexo é a vigente; as seguintes são redações antigas do anexo inteiro
+        # a primeira de cada anexo é a vigente; as outras são o anexo inteiro em redação antiga
         if not anexo or anexo[-1] in anexos or tabela["linhas"][0][:3] != ["ITEM", "DESCRIÇÃO", "NCM/SH"]:
             continue
         anexos[anexo[-1]] = [

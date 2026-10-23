@@ -1,4 +1,4 @@
-"""ICMS próprio, FCP, DIFAL (EC 87/2015), substituição tributária e benefícios fiscais."""
+"""ICMS próprio, FCP, DIFAL, ST e benefícios."""
 
 from __future__ import annotations
 
@@ -8,9 +8,9 @@ from decimal import Decimal
 from . import tabelas
 from .modelos import ZERO, Beneficio, Item, Nota, Regime, Tratamento, Tributo, centavos, pct
 
-# Res. Senado 22/1989: 7% de S/SE (exceto ES) para N, NE, CO e ES; 12% nas demais
+# Res. SF 22/1989: 7% saindo daqui para N/NE/CO/ES
 _SUL_SUDESTE_SEM_ES = frozenset(["MG", "PR", "RJ", "RS", "SC", "SP"])
-# Res. Senado 13/2012: 4% para importados e nacionais com conteúdo de importação acima de 40%
+# Res. SF 13/2012: importado ou conteúdo de importação > 40%
 _ORIGENS_4_PORCENTO = frozenset({1, 2, 3, 8})
 
 
@@ -28,12 +28,12 @@ class _Aplicado:
     percentual: Decimal
     cbenef: str | None
     fundamento: str
-    # redução da base na UF de destino (DIFAL e ST); Conv. 52/91, cl. 5ª, por exemplo
+    # redução que o destino aplica no DIFAL/ST (ex.: Conv. 52/91, cl. 5ª)
     reducao_destino: Decimal
 
 
 def _interna(item: Item, uf: str, nota: Nota) -> tuple[Decimal, Decimal, str]:
-    """Alíquota interna do produto na UF, FCP e fundamento."""
+    """(alíquota interna, FCP, fundamento)."""
     dados = tabelas.dados_uf(uf, nota.data)
     if item.aliquota_icms is not None:
         return item.aliquota_icms, dados.fcp, "alíquota interna informada para o produto"
@@ -58,7 +58,7 @@ def _beneficio(item: Item, nota: Nota, aliquota: Decimal) -> _Aplicado | None:
             if interna.tratamento == Tratamento.REDUCAO_BASE:
                 destino = interna.percentual
         except ValueError:
-            pass  # a regra não tem versão interna: o destino tributa pela base cheia
+            pass  # regra sem versão interna: destino na base cheia
     if regra.tratamento == Tratamento.REDUCAO_BASE and not regra.percentual:
         return None
     return _Aplicado(regra.tratamento, regra.percentual, regra.cbenef, regra.fundamento, destino)
@@ -68,11 +68,11 @@ def calcular(nota: Nota, item: Item, valor_ipi: Decimal) -> dict[str, Tributo]:
     emit, dest = nota.emitente, nota.destinatario
     if item.cest:
         tabelas.conferir_cest(item.cest, item.ncm)
-    # CF art. 155, §2º, XI: o IPI fica fora da base só entre contribuintes, para industrialização ou revenda
+    # CF 155, §2º, XI: IPI fora da base só entre contribuintes, para revenda ou industrialização
     base_cheia = item.valor_operacao + (valor_ipi if nota.consumidor_final else ZERO)
     if nota.interestadual:
         aliquota, fundamento = aliquota_interestadual(emit.uf, dest.uf, item.origem)
-        fcp = ZERO  # o FCP da origem não incide na saída interestadual; o do destino vai no DIFAL ou na ST
+        fcp = ZERO  # FCP de origem não vai na interestadual
     else:
         aliquota, fcp, fundamento = _interna(item, emit.uf, nota)
 
@@ -84,7 +84,7 @@ def calcular(nota: Nota, item: Item, valor_ipi: Decimal) -> dict[str, Tributo]:
 
     tributos: dict[str, Tributo] = {}
     if emit.regime == Regime.SIMPLES:
-        # o Simples deduz da ST o ICMS próprio calculado como se fosse do regime normal (Conv. 142/2018, cl. 13ª, §1º)
+        # Conv. 142/18, cl. 13ª, §1º: deduz o ICMS próprio como se fosse regime normal
         st = _substituicao(nota, item, valor_ipi, aliquota, ZERO if sem_icms else icms_cheio, ZERO, beneficio)
         tributos["ICMS"] = _simples(item, nota, beneficio, st is not None)
     else:
@@ -109,7 +109,7 @@ def _proprio(base, base_cheia, aliquota, icms_cheio, beneficio: _Aplicado | None
         return Tributo(base, aliquota, icms_cheio, "00", fundamento)
     extras: dict = {"cbenef": beneficio.cbenef} if beneficio.cbenef else {}
     detalhe = f"{fundamento}; {beneficio.fundamento}"
-    # valor desonerado pela fórmula simples (sem o ICMS por dentro); há UF que exige outra (ex.: RJ, Res. 720/14)
+    # fórmula simples; RJ (Res. 720/14) e outras querem por dentro
     sem_beneficio = centavos(base_cheia * pct(aliquota))
     match beneficio.tratamento:
         case Tratamento.REDUCAO_BASE:
@@ -120,7 +120,7 @@ def _proprio(base, base_cheia, aliquota, icms_cheio, beneficio: _Aplicado | None
         case Tratamento.NAO_TRIBUTADA:
             return Tributo(ZERO, ZERO, ZERO, "41", detalhe, extras | {"valor_desonerado": sem_beneficio})
         case Tratamento.DIFERIMENTO:
-            # NT 2016.002: vICMSOp = vBC × pICMS; vICMSDif = vICMSOp × pDif; vICMS = vICMSOp − vICMSDif
+            # NT 2016.002
             diferido = centavos(icms_cheio * pct(beneficio.percentual))
             extras |= {
                 "valor_operacao": icms_cheio,
@@ -132,11 +132,11 @@ def _proprio(base, base_cheia, aliquota, icms_cheio, beneficio: _Aplicado | None
 
 
 def _simples(item: Item, nota: Nota, beneficio: _Aplicado | None, com_st: bool) -> Tributo:
-    """Simples Nacional: o ICMS próprio vai no DAS e não é destacado (LC 123/2006, art. 13)."""
+    """LC 123, art. 13: ICMS no DAS, sem destaque."""
     if beneficio and beneficio.tratamento in (Tratamento.ISENCAO, Tratamento.NAO_TRIBUTADA):
         return Tributo(ZERO, ZERO, ZERO, "400", "não tributada pelo Simples Nacional; " + beneficio.fundamento)
     emit, dest = nota.emitente, nota.destinatario
-    # LC 123/2006, art. 23, §1º: crédito só para destinatário fora do Simples que revende ou industrializa
+    # LC 123, art. 23, §1º
     if emit.aliquota_credito_sn and dest.regime != Regime.SIMPLES and not nota.consumidor_final:
         credito = centavos(item.valor_operacao * pct(emit.aliquota_credito_sn))
         return Tributo(
@@ -158,9 +158,9 @@ def _difal(
     icms_origem: Decimal,
     beneficio: _Aplicado | None,
 ) -> dict[str, Tributo]:
-    """Diferencial de alíquotas devido ao destino na venda a consumidor final não contribuinte."""
+    """Venda a não contribuinte de outra UF (EC 87/2015)."""
     if nota.emitente.regime == Regime.SIMPLES:
-        # STF, ADI 5.464: suspensa a cláusula 9ª do Conv. ICMS 93/2015, que cobrava o DIFAL do Simples
+        # STF, ADI 5.464
         return {}
     dest = nota.destinatario.uf
     aliquota_dest, fcp, fundamento = _interna(item, dest, nota)
@@ -168,13 +168,13 @@ def _difal(
     metodo = nota.metodo_difal or dados.difal_base
     reducao = beneficio.reducao_destino if beneficio else ZERO
     v = base_cheia * (1 - pct(reducao))
-    # V = valor com o ICMS de origem embutido. Com V=1000, 7% e 20%: única 130,00; dupla 162,50; por dentro 151,13
+    # V=1000, 7% → 20%: única 130,00; dupla 162,50; por dentro 151,13
     if metodo == "unica":
-        # Conv. ICMS 236/2021, cl. 2ª, §1º
+        # Conv. 236/21, cl. 2ª, §1º
         base_dest = centavos(v)
         valor = centavos(base_dest * pct(aliquota_dest)) - icms_origem
     else:
-        # LC 87/1996, art. 13, §7º (LC 190/2022): base com o ICMS do destino "por dentro"
+        # LC 87, art. 13, §7º
         base_dest = centavos((v - icms_origem) / (1 - pct(aliquota_dest)))
         if metodo == "dupla":
             valor = centavos(base_dest * pct(aliquota_dest)) - icms_origem
@@ -226,15 +226,14 @@ def _substituicao(
 
     aliquota_dest, fcp, _ = _interna(item, dest.uf, nota)
     mva_aplicada = mva
-    # MVA ajustada: neutraliza a diferença entre a interestadual e a interna; não se aplica ao remetente do Simples
-    # (Conv. ICMS 142/2018, cl. 11ª, §1º) nem quando a interna não é maior (Prot. ICMS 41/2008, §7º)
+    # sem ajuste para o Simples (Conv. 142/18, cl. 11ª, §1º) nem com interna ≤ inter (Prot. 41/08, §7º)
     if nota.interestadual and aliquota_dest > aliquota_propria and nota.emitente.regime != Regime.SIMPLES:
         mva_aplicada = ((1 + pct(mva)) * (1 - pct(aliquota_propria)) / (1 - pct(aliquota_dest)) - 1) * 100
         mva_aplicada = mva_aplicada.quantize(Decimal("0.0001"))
     reducao = ZERO
     if beneficio and beneficio.tratamento == Tratamento.REDUCAO_BASE:
         reducao = beneficio.reducao_destino if nota.interestadual else beneficio.percentual
-    # Conv. ICMS 142/2018, cl. 11ª, III: valor + frete, seguro, impostos (IPI) e encargos, com a margem
+    # Conv. 142/18, cl. 11ª, III: IPI entra
     base_st = centavos((item.valor_operacao + valor_ipi) * (1 - pct(reducao)) * (1 + pct(mva_aplicada)))
     valor_st = max(centavos(base_st * pct(aliquota_dest)) - icms_proprio, ZERO)
     extras: dict = {
@@ -255,7 +254,7 @@ def _substituicao(
         )
     }
     if fcp:
-        # NT 2016.002, regra N23d-10: vFCPST = vBCFCPST × pFCPST − vFCP
+        # NT 2016.002, N23d-10: desconta o FCP próprio
         resultado["FCP_ST"] = Tributo(
             base_st, fcp, max(centavos(base_st * pct(fcp)) - fcp_proprio, ZERO), fundamento=f"FCP-ST de {dest.uf}"
         )

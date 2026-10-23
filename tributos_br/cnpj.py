@@ -1,4 +1,4 @@
-"""Validação de CNPJ (numérico e alfanumérico, IN RFB 2.229/2024) e preenchimento do participante pela BrasilAPI."""
+"""CNPJ numérico e alfanumérico (IN RFB 2.229/2024); cadastro pela BrasilAPI."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ def limpar(cnpj: str) -> str:
 
 
 def _dv(base: str) -> str:
-    # cada caractere vale o código ASCII menos 48: dígitos ficam iguais, 'A' vale 17
+    # ASCII − 48: dígito vale ele mesmo, 'A' vale 17
     soma = sum((ord(c) - 48) * p for c, p in zip(base, _PESOS[-len(base) :], strict=True))
     resto = soma % 11
     return "0" if resto < 2 else str(11 - resto)
@@ -38,11 +38,7 @@ def participante(
     regime: Regime | str | None = None,
     timeout: float = 15,
 ) -> Participante:
-    """Monta o participante a partir do cadastro público do CNPJ.
-
-    O cadastro informa a UF e a opção pelo Simples, mas não se a empresa é Lucro Real ou Presumido, nem a
-    inscrição estadual: fora do Simples, o regime precisa ser informado.
-    """
+    """O cadastro público não diz se é Real ou Presumido: fora do Simples, regime é obrigatório."""
     cnpj = limpar(cnpj)
     if not valido(cnpj):
         raise ValueError(f"CNPJ inválido: {cnpj}")

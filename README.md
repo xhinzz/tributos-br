@@ -75,7 +75,7 @@ flowchart LR
 | **ICMS interno e FCP** | Alíquota modal das 27 UFs com vigência (AL, MA, PI e RN mudaram em 2025/2026), FCP geral (AL, RJ, SE), alíquota própria do produto | Lei de ICMS de cada UF, citada linha a linha |
 | **Base do ICMS** | Frete, seguro, outras despesas, desconto incondicional e IPI na base quando o destino é consumidor final (CF art. 155, §2º, XI) | LC 87/1996, art. 13 |
 | **DIFAL** | Venda a não contribuinte com os três métodos usados pelas UFs (base única, base dupla e por dentro), FCP do destino, Simples fora (ADI 5.464) | Método de cada UF tirado do RICMS, de consulta ou de norma de execução estadual (22 das 27 confirmadas) |
-| **ICMS-ST** | MVA original e ajustada, IPI na base, dedução do ICMS próprio (inclusive a presumida do Simples), redução de base, FCP-ST líquido do FCP próprio, conferência de CEST × NCM | Conv. ICMS 142/2018 (1.030 CESTs extraídos do texto do CONFAZ); MVA informada ou da tabela |
+| **ICMS-ST** | Se a operação interestadual tem ST (signatárias do acordo do segmento, com as exceções por CEST e UF), MVA do próprio ato ou da UF de destino, MVA ajustada, IPI na base, dedução do ICMS próprio (inclusive a presumida do Simples), FCP-ST líquido do FCP próprio, CEST × NCM | Conv. 142/2018 (1.030 CESTs) e 11 acordos de segmento conferidos no CONFAZ (autopeças, cimento, bebidas, tintas, pneus, lâmpadas, materiais de construção, medicamentos, combustíveis, cigarros) |
 | **Benefícios** | Redução de base (CST 20/70), isenção (40), não tributada (41), diferimento (51) com vICMSOp/vICMSDif, valor desonerado, cBenef, carga efetiva | Conv. ICMS 52/91 (Anexos I e II, 581 NCMs) e 100/97 (cl. 1ª, 2ª e 3ª-A) prontos; os demais, informados |
 | **Simples Nacional** | CSOSN 101/102/201/202/400 e crédito do art. 23 da LC 123 só quando cabe | LC 123/2006 |
 | **PIS/COFINS** | Lucro Real (1,65% + 7,6%) e Presumido (0,65% + 3%), base sem o ICMS, monofásico, alíquota zero, isenção, suspensão, Simples (CST 49) | Leis 10.637, 10.833, 9.715 e 9.718; STF Tema 69 |
@@ -170,9 +170,22 @@ Diferimento (CST 510/515), monofásico de combustíveis e alíquota fixa ainda n
 
 ### Substituição tributária
 
-A ST entra quando o destinatário é contribuinte que vai revender e há MVA, informada no item (`mva="40"`) ou
-encontrada na tabela pela UF de destino e pelo CEST. A MVA é ajustada nas operações interestaduais, exceto para
-remetente do Simples e quando a alíquota interna do destino não passa da interestadual.
+A ST entra quando o destinatário é contribuinte que vai revender. Na operação **interestadual**, só se as duas UFs
+forem signatárias do acordo do segmento do CEST (Conv. 142/18, cl. 2ª): `st_acordos.csv` traz os signatários
+vigentes de cada convênio e protocolo, com as exceções do próprio ato (CEST fora, UF fora para certos produtos,
+destino excluído) e as composições anteriores, para notas antigas. SP, por exemplo, saiu dos acordos de autopeças,
+tintas e pneus em 01/10/2026.
+
+```python
+Item("38151210", "1000", cest="0100100")  # MG -> RJ: Prot. 41/08, MVA de 71,78% do próprio ato
+Item("38151210", "1000", cest="0100100")  # MG -> BA: ValueError, a BA usa MVA própria: informe mva
+Item("38151210", "1000", cest="0100100", mva="50")  # MG -> BA com a MVA da legislação baiana
+```
+
+A MVA vem do item (`mva=`), da tabela da UF de destino ou do próprio acordo, nessa ordem. Quando a ST é devida e
+a MVA não é conhecida, o cálculo recusa em vez de sair sem ST. A MVA é ajustada nas operações interestaduais,
+exceto para remetente do Simples e quando a alíquota interna do destino não passa da interestadual. Combustíveis
+e cigarros têm base por preço (PMPF, preço sugerido) e são recusados.
 
 ![ST com MVA ajustada e benefício do Conv. 52/91](docs/img/st_e_beneficio.svg)
 
@@ -269,7 +282,8 @@ tributos_br/dados/
 ├── listas/          NCMs do Conv. 52/91 e dos anexos da LC 214      ← atualizar_convenios.py, atualizar_reforma.py
 ├── cclass_trib.csv  os 173 cClassTrib do IBS/CBS                    ← scripts/atualizar_reforma.py
 ├── beneficios.csv   regras de benefício (redução, carga, isenção, diferimento) com vigência
-└── mva.csv          MVA por UF de destino e CEST, com vigência
+├── mva.csv          MVA por UF de destino e CEST, com vigência
+└── st_acordos.csv   signatários e exceções dos acordos de ST, com vigência
 ```
 
 Mudança de alíquota é uma linha nova no CSV com `vigencia_inicio`, não uma alteração de código; notas antigas
@@ -283,7 +297,11 @@ O que a biblioteca **não** faz, para não passar uma confiança que ela não te
 - **Benefícios estaduais.** Cada RICMS tem centenas de reduções, isenções e créditos presumidos que mudam toda
   semana. A base traz os convênios nacionais; o resto entra por `Beneficio(...)`.
 - **MVA.** Cada UF fixa a sua, e não existe fonte oficial centralizada. `mva.csv` traz exemplos conferidos de SP
-  (Portarias SRE 88/2025 e 32/2026); nas demais, informe `mva` no item. Base por pauta ou PMPF não é calculada.
+  (Portarias SRE 88/2025 e 32/2026) e alguns acordos trazem a própria; nas demais, informe `mva` no item. Base
+  por pauta, PMPF ou preço sugerido não é calculada.
+- **Acordos de ST.** Os protocolos bilaterais e os que listam produtos por NCM em vez de CEST (Prot. 104/09 e
+  84/11) não estão na tabela; as exclusões de CEST da cl. 2ª, VI a VIII, do Prot. 196/09 também não. A ST
+  interna de cada UF (quais produtos) segue dependendo de `mva` ou de `mva.csv`.
 - **Método do DIFAL.** AP, BA, MA, MS e SP não publicam fórmula nem exemplo para o não contribuinte; a tabela
   segue a letra da lei e o resultado traz `extras["conferir"]`.
 - **Valor desonerado.** Usa a fórmula simples (base cheia × alíquota − ICMS devido). Algumas UFs exigem outra (o RJ

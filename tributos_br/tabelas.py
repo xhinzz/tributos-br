@@ -248,3 +248,48 @@ def sugerir_cclass_trib(ncm: str, data: date) -> list[tuple[str, str]]:
         if linha and linha["nfe"] == "1" and linha["anexo"] and no_anexo_lc214(int(linha["anexo"]), ncm):
             saida.append((codigo, linha["nome"]))
     return saida
+
+
+@dataclass(frozen=True)
+class AcordoST:
+    codigo: str
+    ato: str
+    base: str  # mva | preco (PMPF, preço sugerido)
+    mva: Decimal | None  # a do próprio ato; None quando vale a legislação do destino
+    fundamento: str
+
+
+@lru_cache(maxsize=1)
+def _acordos() -> list[dict[str, str]]:
+    return _ler("st_acordos.csv")
+
+
+def _excluido(excecoes: str, cest: str, uf_origem: str, uf_destino: str) -> bool:
+    """cest:p1,p2 (sempre) | uf:XX:p1,p2 (XX na origem ou no destino) | destino:XX:p1,p2. Sem prefixo, vale tudo."""
+    for regra in filter(None, excecoes.split("|")):
+        partes = regra.split(":")
+        prefixos = [p for p in partes[-1].split(",") if p]
+        if partes[0] == "uf" and partes[1] not in (uf_origem, uf_destino):
+            continue
+        if partes[0] == "destino" and partes[1] != uf_destino:
+            continue
+        if not prefixos or any(cest.startswith(p) for p in prefixos):
+            return True
+    return False
+
+
+def acordo_st(cest: str, uf_origem: str, uf_destino: str, data: date) -> AcordoST | None:
+    """Acordo de ST do segmento do CEST com as duas UFs signatárias (Conv. 142/18, cl. 2ª)."""
+    for linha in _acordos():
+        ufs = linha["ufs"].split("|")
+        if (
+            cest[:2] in linha["segmentos"].split("|")
+            and uf_origem in ufs
+            and uf_destino in ufs
+            and _vigente(linha, data)
+            and not _excluido(linha["excecoes"], cest, uf_origem, uf_destino)
+        ):
+            proprio = uf_destino in linha["mva_destino_proprio"].split("|")
+            mva = D(linha["mva"]) if linha["mva"] and not proprio else None
+            return AcordoST(linha["codigo"], linha["ato"], linha["base"], mva, linha["fundamento"])
+    return None

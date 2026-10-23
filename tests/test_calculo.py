@@ -13,6 +13,7 @@ HOJE = date(2026, 10, 23)
 NOTEBOOK = "84713012"  # IPI 15% na TIPI
 CAL = "25221000"  # CEST 10.001.00, IVA-ST de SP 49%
 MAQUINA = "84378010"  # Anexo I do Conv. 52/91
+CATALISADOR = "38151210"  # CEST 01.001.00, autopeças
 
 
 def nota(emit, dest, *itens, **kw):
@@ -154,20 +155,24 @@ def test_st_interna_com_mva_da_tabela():
 
 
 def test_st_interestadual_mva_ajustada():
-    r = nota(Participante("MG"), Participante("SP"), Item(CAL, 1000, cest="1000100"))
-    st = tributos(r)["ICMS_ST"]
-    # MVA ajustada = 1,49 × (1 − 12%) / (1 − 18%) − 1 = 59,9024%; base 1599,02 × 18% = 287,82 − 120 de ICMS próprio
-    assert st.extras["mva_aplicada"] == D("59.9024")
-    assert (st.base, st.valor) == (D("1599.02"), D("167.82"))
+    # autopeça de MG para o RJ: Prot. 41/08, MVA do próprio ato de 71,78%
+    r = nota(Participante("MG"), Participante("RJ"), Item(CATALISADOR, 1000, cest="0100100"))
+    t = tributos(r)
+    # MVA ajustada = 1,7178 × (1 − 12%) / (1 − 20%) − 1 = 88,9580%; base 1889,58 × 20% = 377,92 − 120
+    assert t["ICMS_ST"].extras["mva_aplicada"] == D("88.9580")
+    assert (t["ICMS_ST"].base, t["ICMS_ST"].valor) == (D("1889.58"), D("257.92"))
+    assert "Prot. ICMS 41/2008" in t["ICMS_ST"].fundamento
+    # FECP do RJ sobre a base da ST: 1889,58 × 2%
+    assert t["FCP_ST"].valor == D("37.79")
 
 
 def test_st_do_simples_sem_mva_ajustada_e_com_deducao_presumida():
-    r = nota(Participante("MG", Regime.SIMPLES), Participante("SP"), Item(CAL, 1000, cest="1000100"))
+    r = nota(Participante("MG", Regime.SIMPLES), Participante("RJ"), Item(CATALISADOR, 1000, cest="0100100"))
     t = tributos(r)
     # Conv. 142/18, cl. 11ª, §1º: MVA original; cl. 13ª, §1º: deduz 12% × 1000 mesmo sem destaque
     assert t["ICMS"].cst == "202" and t["ICMS"].valor == 0
-    assert t["ICMS_ST"].extras["mva_aplicada"] == D(49)
-    assert t["ICMS_ST"].valor == D("148.20")  # 1490 × 18% = 268,20 − 120
+    assert t["ICMS_ST"].extras["mva_aplicada"] == D("71.78")
+    assert t["ICMS_ST"].valor == D("223.56")  # 1717,80 × 20% = 343,56 − 120
 
 
 def test_st_nao_se_aplica_a_consumidor_final():

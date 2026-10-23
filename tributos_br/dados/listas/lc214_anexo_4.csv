@@ -1,0 +1,110 @@
+item,ncm,descricao
+1,39269030,Bolsa para drenagem
+2,90189099,Sistema para drenagem com conjunto intermediário para medição contínua da diurese
+3,37011010,"Chapas e filmes para raios-X, sensibilizados em uma face"
+4,30064020,Cimentos para reconstituição óssea
+5,30049099,Substitutos de enxerto ósseo
+6,39269040,Coletor para unidade de drenagem externa
+7,391740,Conector completo com tampa
+8,391740,Conector em Y
+9,30049099,Conjuntos de troca e concentrados polieletrolíticos para diálise
+10,90189010,Conjunto para autotransfusão
+11,90219019,Conjunto para hidrocefalia de baixo perfil
+12,90219019,Conjunto para hidrocefalia standard
+13,90219091,Eletrodo endocárdico definitivo
+14,90219091,Eletrodo epicárdico definitivo
+15,90219091,Eletrodo para marcapasso temporário endocárdico
+16,90219091,Eletrodo para marcapasso temporário epicárdico
+17,90219019,Espaçador de tendão
+18,37021020,Filmes especiais para raios-X sensibilizados em ambas as faces
+19,37021010,Filmes especiais para raios-X sensibilizados em uma face
+20,84212990,Filtro de linha arterial e venoso
+21,84212990,Filtro de sangue arterial e venoso para recirculação
+22,84212990,Filtro para cardioplegia
+23,300610,"Categutes esterilizados, materiais esterilizados semelhantes para suturas cirúrgicas (incluídos os fios absorvíveis esterilizados para cirurgia ou odontologia) e adesivos esterilizados para tecidos or"
+24,90189040,Hemoconcentrador para circulação extracorpórea
+25,84212911,Hemodialisador capilar
+26,90215000,Marcapasso cardíaco câmara dupla
+27,90215000,Marcapasso cardíaco multiprogramável com telemetria
+28,37011029,Outras chapas e filmes para raios-X
+29,90189099,Oxigenador de bolha com tubos para circulação extracorpórea
+30,90189099,Oxigenador de membrana com tubos para circulação extracorpórea
+31,90189099,Reservatório de cardiotomia
+32,90189099,Reservatório para cardioplegia com tubo sem filtro
+33,90189040,Rins artificiais
+34,90219019,Shunt lombo-peritonal
+35,30059090,Substituto temporário de pele (biológica/sintética) (por cm2)
+36,30061090,Tela inorgânica
+37,90219019,Válvula para hidrocefalia
+38,90219019,Válvula para tratamento de ascite
+39,28444390,Fonte de irídio 192
+40,90219012,Stent vascular
+41,84798999,Reprocessador de filtros utilizados em hemodiálise
+42,90212900,"Implantes osseointegráveis, na forma de parafuso, e seus componentes manufaturados, tais como tampas de proteção, montadores, conjuntos, pilares (cicatrizador, conector, de transferência ou temporário"
+43,90219011,Cardiodesfibrilador implantável
+44,90219012,Espiral para embolização
+45,30021221,Imunoglobulina anti-Rh
+46,30021222,Outras imunoglobulinas séricas
+47,30021223,Concentrado de fator VIII
+48,!30021221,"Outras frações do sangue, exceto as preparadas como medicamentos, as imunoglobulinas séricas, o concentrado de fator VIII e a soroalbumina sob a forma de gel para preparação de reagentes de diagnóstic"
+48,!30021229,"Outras frações do sangue, exceto as preparadas como medicamentos, as imunoglobulinas séricas, o concentrado de fator VIII e a soroalbumina sob a forma de gel para preparação de reagentes de diagnóstic"
+49,38221,"Reagentes de diagnóstico ou de laboratório em qualquer suporte e reagentes de diagnóstico ou de laboratório preparados, mesmo em um suporte, mesmo apresentados sob a forma de estojos, exceto os da pos"
+49,!3006,"Reagentes de diagnóstico ou de laboratório em qualquer suporte e reagentes de diagnóstico ou de laboratório preparados, mesmo em um suporte, mesmo apresentados sob a forma de estojos, exceto os da pos"
+50,30063021,"Reagentes de diagnóstico concebidos para serem administrados ao paciente, à base de somatoliberina"
+51,!30064012,"Produtos para obturação dentária, exceto cimentos"
+52,30067000,"Preparações em gel, concebidas para uso em medicina humana ou veterinária como lubrificante para certas partes do corpo em intervenções cirúrgicas ou exames médicos ou como agente de ligação entre o c"
+53,30069110,"Bolsas para uso em colostomia, ileostomia e urostomia"
+54,!30069190,"Equipamentos identificáveis para ostomia, exceto bolsas para uso em colostomia, ileostomia e urostomia"
+55,39269030,Bolsas para uso em medicina (hemodiálise e usos semelhantes)
+56,39269040,Artigos exclusivamente de laboratório de análises clínicas
+57,39269050,"Acessórios de plástico do tipo utilizado em linhas de sangue para hemodiálise, tais como: obturadores, incluídos os reguláveis ( clamps ) , clipes e similares"
+58,40151,Luvas cirúrgicas e luvas de procedimento
+59,901831,"Seringas, mesmo com agulhas"
+60,901832,Agulhas tubulares de metal e agulhas para suturas
+61,!90183910,"Agulhas, exceto as de metal e as para suturas"
+62,9018392,"Sondas, cateteres e cânulas, individualmente ou em conjunto"
+63,90183930,Lancetas para vacinação e cautérios
+64,9018399,"Instrumentos semelhantes a seringas, a agulhas, a cateteres e a cânulas"
+65,9018491,Brocas para odontologia
+66,90184920,Limas
+67,90189095,"Grampos e clipes, seus aplicadores e extratores"
+68,901831,"Outros instrumentos e aparelhos para medicina, cirurgia e odontologia, excluídas seringas e agulhas, das posições 9018.31 e 9018.32"
+68,901832,"Outros instrumentos e aparelhos para medicina, cirurgia e odontologia, excluídas seringas e agulhas, das posições 9018.31 e 9018.32"
+68,90183999,"Outros instrumentos e aparelhos para medicina, cirurgia e odontologia, excluídas seringas e agulhas, das posições 9018.31 e 9018.32"
+69,940290,"Mesas de operação e para exames, camas hospitalares e de uso clínico"
+70,90182010,Fotocoagulador a laser
+71,90189021,Bisturi elétrico
+72,90189099,Aparelho de anestesia com monitor multiparâmetros
+73,84198110,Autoclave
+74,90185090,Retinógrafo
+75,38210000,Meios de cultura
+76,84198999,Termocicladores utilizados em diagnóstico e na pesquisa científica
+77,84199040,Partes e peças de termocicladores
+78,84798912,Pipetadores laboratoriais para diagnóstico e pesquisa científica
+79,90272012,Cromatógrafo de fase líquida
+80,90272021,Sequenciadores automáticos de ADN mediante eletroforese capilar
+81,90272029,Aparelhos de eletroforese para diagnóstico e pesquisa científica
+82,902730,Analisadores por espectrofotometria para diagnóstico e pesquisa científica
+83,90275020,Analisadores por fotometria para diagnóstico e pesquisa científica
+84,90275050,Citômetro de fluxo
+85,90275090,Analisadores por radiações ópticas para diagnóstico e pesquisa científica
+86,90278999,Outros analisadores para diagnóstico e pesquisa científica
+87,90278100,Espectrômetro de massa
+88,90278999,Outros analisadores para diagnóstico
+89,90279010,Micrótomo
+90,9027909,Partes e peças de equipamentos analisadores laboratoriais
+91,40141000,Preservativo
+92,90189099,Dispositivo intrauterino (DIU)
+93,38249989,Substância para conservação de órgãos e tecidos
+94,90219091,Introdutor de punção para implante de eletrodo endocárdico
+95,90219099,Enxerto tubular de politetrafluoretileno - PTFE (por cm2)
+96,90219099,Enxerto arterial e venoso tubular inorgânico
+97,90219099,Botão para crânio
+98,90183929,Guia metálico para introdução de cateter duplo lumen
+99,90183929,Dilatador para implante de cateter duplo lumen
+100,90183929,Guia de troca para angioplastia
+101,90183929,Introdutor para cateter com e sem válvula
+102,90183999,Kit cânula
+103,90183929,Dreno para sucção
+104,90183929,Sistema de drenagem mediastinal
+105,90189099,Conjunto descartável de balão intra-aórtico

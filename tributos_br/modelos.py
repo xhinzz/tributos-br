@@ -134,6 +134,7 @@ class Item:
     beneficio: Beneficio | str | None = None
     # monofasico (CST 04) | aliquota_zero (06) | isenta (07) | suspensao (09)
     pis_cofins: str | None = None
+    cclass_trib: str = "000001"  # IBS/CBS: tributação integral
 
     def __post_init__(self):
         if self.pis_cofins not in (None, "monofasico", "aliquota_zero", "isenta", "suspensao"):

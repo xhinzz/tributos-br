@@ -45,8 +45,8 @@ COFINS saem sem o ICMS; e a base do IBS/CBS desconta ICMS, DIFAL, FCP, PIS e COF
 
 ![Cálculo de uma venda de SP a consumidor final no RJ](docs/img/consumidor_final.svg)
 
-<sub>Linha em amarelo: o método do DIFAL daquela UF ainda não tem confirmação oficial (veja [DIFAL](#difal)).
-Os prints são gerados do cálculo de verdade por `scripts/gerar_imagens.py`.</sub>
+<sub>Prints gerados do cálculo de verdade por `scripts/gerar_imagens.py`. Valor marcado para conferir sai em
+amarelo.</sub>
 
 ## Como o cálculo anda
 
@@ -74,7 +74,7 @@ flowchart LR
 | **ICMS interestadual** | 4%, 7% ou 12% pela origem da mercadoria e pelo par de UFs | Res. Senado 22/1989 e 13/2012 |
 | **ICMS interno e FCP** | Alíquota modal das 27 UFs com vigência (AL, MA, PI e RN mudaram em 2025/2026), FCP geral (AL, RJ, SE), alíquota própria do produto | Lei de ICMS de cada UF, citada linha a linha |
 | **Base do ICMS** | Frete, seguro, outras despesas, desconto incondicional e IPI na base quando o destino é consumidor final (CF art. 155, §2º, XI) | LC 87/1996, art. 13 |
-| **DIFAL** | Venda a não contribuinte com os três métodos usados pelas UFs (base única, base dupla e por dentro), FCP do destino, Simples fora (ADI 5.464) | EC 87/2015, LC 190/2022, Conv. ICMS 236/2021 |
+| **DIFAL** | Venda a não contribuinte com os três métodos usados pelas UFs (base única, base dupla e por dentro), FCP do destino, Simples fora (ADI 5.464) | Método de cada UF tirado do RICMS, de consulta ou de norma de execução estadual (22 das 27 confirmadas) |
 | **ICMS-ST** | MVA original e ajustada, IPI na base, dedução do ICMS próprio (inclusive a presumida do Simples), redução de base, FCP-ST líquido do FCP próprio, conferência de CEST × NCM | Conv. ICMS 142/2018 (1.030 CESTs extraídos do texto do CONFAZ); MVA informada ou da tabela |
 | **Benefícios** | Redução de base (CST 20/70), isenção (40), não tributada (41), diferimento (51) com vICMSOp/vICMSDif, valor desonerado, cBenef, carga efetiva | Conv. ICMS 52/91 (Anexos I e II, 581 NCMs) e 100/97 (cl. 1ª, 2ª e 3ª-A) prontos; os demais, informados |
 | **Simples Nacional** | CSOSN 101/102/201/202/400 e crédito do art. 23 da LC 123 só quando cabe | LC 123/2006 |
@@ -168,8 +168,17 @@ As UFs não calculam o DIFAL do mesmo jeito. Com R$ 1.000 de São Paulo (7%) par
 | `dupla` | 1.162,50 | 162,50 |
 | `por_dentro` | 1.162,50 | 151,13 |
 
-O método de cada UF está em `tributos_br/dados/ufs.csv`. Se a sua contabilidade segue outra orientação, informe
-`Nota(..., metodo_difal="dupla")`.
+Cada linha de `tributos_br/dados/ufs.csv` diz o método da UF e de onde ele saiu. Hoje:
+
+| Método | UFs |
+|---|---|
+| `unica` | AC, AL, AM, DF, ES, MT (desde 12/08/2026), PA, PE, RJ, RN, RO, RR, RS, SC, SE; sem confirmação: AP, BA, MA, SP |
+| `por_dentro` | CE, GO, MG, PB, PI, PR (desde 07/01/2025), MT (até 11/08/2026) |
+| `dupla` | TO; sem confirmação: MS |
+
+Os exemplos numéricos que as SEFAZ publicaram (CE, GO, MT, PR, AL e TO) estão em `tests/test_difal_oficial.py`
+e batem centavo a centavo. Nas cinco UFs sem fórmula oficial, o resultado traz `extras["conferir"]`; se a sua
+contabilidade segue outra orientação, informe `Nota(..., metodo_difal="dupla")`.
 
 ### CNPJ
 
@@ -226,8 +235,8 @@ O que a biblioteca **não** faz, para não passar uma confiança que ela não te
   semana. A base traz os convênios nacionais; o resto entra por `Beneficio(...)`.
 - **MVA.** Cada UF fixa a sua, e não existe fonte oficial centralizada. `mva.csv` traz exemplos conferidos de SP
   (Portarias SRE 88/2025 e 32/2026); nas demais, informe `mva` no item. Base por pauta ou PMPF não é calculada.
-- **Método do DIFAL.** Parte das UFs não publica fórmula oficial; essas linhas estão marcadas em `ufs.csv` e o
-  resultado traz `extras["conferir"]`.
+- **Método do DIFAL.** AP, BA, MA, MS e SP não publicam fórmula nem exemplo para o não contribuinte; a tabela
+  segue a letra da lei e o resultado traz `extras["conferir"]`.
 - **Valor desonerado.** Usa a fórmula simples (base cheia × alíquota − ICMS devido). Algumas UFs exigem outra (o RJ
   calcula por dentro).
 - **Fora do escopo:** serviços (ISS), Imposto Seletivo (2027), monofásicos na ponta do fabricante ou importador,
@@ -239,7 +248,7 @@ O cálculo é uma ferramenta de apoio e não substitui a validação do respons�
 
 ```bash
 python -m venv .venv && .venv/bin/pip install -e ".[dev]"
-pytest              # 261 testes; os valores esperados foram calculados à mão, com a conta no comentário
+pytest              # esperados calculados à mão, com a conta no comentário; DIFAL contra exemplos das SEFAZ
 ruff check . && ruff format --check .
 python scripts/atualizar_tipi.py        # baixa a TIPI da Receita
 python scripts/atualizar_convenios.py   # baixa os Convênios 142/2018 e 52/1991 do CONFAZ

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00"><NFe><infNFe Id="NFe35261011222333000181550010000000011000000010" versao="4.00">
+<ide><cUF>35</cUF><dhEmi>2026-10-23T10:00:00-03:00</dhEmi><indFinal>1</indFinal></ide>
+<emit><CNPJ>11222333000181</CNPJ><enderEmit><UF>SP</UF></enderEmit><CRT>3</CRT></emit>
+<dest><CNPJ>11444777000161</CNPJ><enderDest><UF>RJ</UF></enderDest><indIEDest>9</indIEDest></dest>
+<det nItem="1"><prod><cProd>1</cProd><xProd>Produto</xProd><NCM>84713012</NCM><CFOP>5102</CFOP><vProd>1000.00</vProd></prod><imposto><ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>3</modBC><vBC>1000.00</vBC><pICMS>18.00</pICMS><vICMS>180.00</vICMS></ICMS00></ICMS><PIS><PISAliq><CST>01</CST><vBC>820.00</vBC><pPIS>1.65</pPIS><vPIS>13.53</vPIS></PISAliq></PIS><COFINS><COFINSAliq><CST>01</CST><vBC>820.00</vBC><pCOFINS>7.60</pCOFINS><vCOFINS>62.32</vCOFINS></COFINSAliq></COFINS><IBSCBS><CST>000</CST><cClassTrib>000001</cClassTrib><gIBSCBS><vBC>744.15</vBC><gIBSUF><pIBSUF>0.1000</pIBSUF><vIBSUF>0.74</vIBSUF></gIBSUF><gIBSMun><pIBSMun>0.0000</pIBSMun><vIBSMun>0.00</vIBSMun></gIBSMun><vIBS>0.74</vIBS><gCBS><pCBS>0.9000</pCBS><vCBS>7.10</vCBS></gCBS></gIBSCBS></IBSCBS></imposto></det>
+<total><ICMSTot><vNF>1000.00</vNF></ICMSTot></total>
+</infNFe></NFe></nfeProc>

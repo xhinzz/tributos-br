@@ -51,7 +51,7 @@ def nfe(
 <nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00"><NFe><infNFe Id="NFe35261011222333000181550010000000011000000010" versao="4.00">
 <ide><cUF>35</cUF><dhEmi>{data}</dhEmi><indFinal>{ind_final}</indFinal></ide>
 <emit><CNPJ>11222333000181</CNPJ><enderEmit><UF>{uf_emit}</UF></enderEmit><CRT>{crt}</CRT></emit>
-<dest><CNPJ>00000000000191</CNPJ><enderDest><UF>{uf_dest}</UF></enderDest><indIEDest>{ind_ie_dest}</indIEDest></dest>
+<dest><CNPJ>11444777000161</CNPJ><enderDest><UF>{uf_dest}</UF></enderDest><indIEDest>{ind_ie_dest}</indIEDest></dest>
 {"".join(itens)}
 <total><ICMSTot><vNF>{v_nf}</vNF></ICMSTot></total>
 </infNFe></NFe></nfeProc>"""

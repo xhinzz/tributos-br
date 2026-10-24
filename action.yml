@@ -1,0 +1,40 @@
+name: Auditoria fiscal de NF-e
+description: Audita os XMLs de NF-e de um pull request (conta do XML e recálculo pela legislação) e comenta o resultado no PR.
+author: xhinzz
+branding:
+  icon: file-text
+  color: red
+
+inputs:
+  arquivos:
+    description: "Padrão dos arquivos de NF-e (fnmatch: * atravessa pastas, ex.: notas/*.xml)"
+    default: "*.xml"
+  regime:
+    description: "real ou presumido, quando o CRT da nota é 3 e o PIS não denuncia o regime"
+    default: ""
+  comentar:
+    description: Comentar o relatório no PR
+    default: "true"
+  falhar:
+    description: Falhar o check quando houver achado de conta ou de regra
+    default: "true"
+  token:
+    description: Token para comentar no PR
+    default: ${{ github.token }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - shell: bash
+      run: pip install --quiet "${{ github.action_path }}"
+    - shell: bash
+      run: python "${{ github.action_path }}/acao/auditar_pr.py"
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        ENTRADA_ARQUIVOS: ${{ inputs.arquivos }}
+        ENTRADA_REGIME: ${{ inputs.regime }}
+        ENTRADA_COMENTAR: ${{ inputs.comentar }}
+        ENTRADA_FALHAR: ${{ inputs.falhar }}

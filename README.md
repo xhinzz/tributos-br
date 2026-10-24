@@ -243,6 +243,30 @@ quando há achado de `conta` ou `regra`, o que permite usar a auditoria num pipe
 tributos-br nota.xml
 ```
 
+### GitHub Action
+
+A auditoria também roda em pull request: a Action lista pela API do GitHub os XMLs alterados, audita cada um e
+comenta o resultado no PR (sempre no mesmo comentário, atualizado a cada push), além do resumo do job.
+
+```yaml
+on: pull_request
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xhinzz/tributos-br@main
+        with:
+          arquivos: "notas/*.xml"   # fnmatch: * atravessa pastas
+          regime: real               # opcional, para CRT 3 sem PIS que denuncie
+          falhar: "true"             # check vermelho com achado de conta ou regra
+```
+
+O próprio repositório usa a Action nas notas de [`exemplos/`](exemplos), uma delas com erros de propósito.
+
 ### CNPJ
 
 ```python

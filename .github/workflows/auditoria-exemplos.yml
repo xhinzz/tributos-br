@@ -1,0 +1,20 @@
+name: auditoria-exemplos
+
+# a própria Action do repositório auditando as notas de exemplos/ em cada PR
+on:
+  pull_request:
+    paths: ["exemplos/**.xml"]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  auditar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          arquivos: "exemplos/*.xml"
+          falhar: "false"  # uma das notas tem erro de propósito
